@@ -1,0 +1,495 @@
+/* Digital Nomad Destination Ranker - Custom Theme */
+
+/* ================================
+   Color Palette
+   ================================ */
+:root {
+    /* Rank colors */
+    --rank-gold: #FFD700;
+    --rank-silver: #C0C0C0;
+    --rank-bronze: #CD7F32;
+
+    /* Score colors */
+    --score-excellent: #4CAF50;
+    --score-good: #FFC107;
+    --score-average: #FF9800;
+    --score-poor: #F44336;
+
+    /* Trend colors */
+    --trend-up: #4CAF50;
+    --trend-down: #F44336;
+    --trend-stable: #9E9E9E;
+
+    /* Badge backgrounds */
+    --badge-excellent-bg: #E8F5E9;
+    --badge-excellent-text: #2E7D32;
+    --badge-hot-deal-bg: #FFEBEE;
+    --badge-hot-deal-text: #C62828;
+    --badge-currency-bg: #E3F2FD;
+    --badge-currency-text: #1565C0;
+    --badge-flight-bg: #FFF3E0;
+    --badge-flight-text: #E65100;
+    --badge-deflation-bg: #F3E5F5;
+    --badge-deflation-text: #7B1FA2;
+
+    /* UI colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --text-primary: #212121;
+    --text-secondary: #757575;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ================================
+   Typography
+   ================================ */
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.section-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1.5rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* ================================
+   Status Indicator
+   ================================ */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-live {
+    background-color: #E8F5E9;
+    color: #2E7D32;
+}
+
+.status-cached {
+    background-color: #FFF3E0;
+    color: #E65100;
+}
+
+.status-mock {
+    background-color: #FFEBEE;
+    color: #C62828;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* ================================
+   Top 3 Destination Cards
+   ================================ */
+.top-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.top-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--shadow-color);
+}
+
+.top-card-gold {
+    border-top: 4px solid var(--rank-gold);
+}
+
+.top-card-silver {
+    border-top: 4px solid var(--rank-silver);
+}
+
+.top-card-bronze {
+    border-top: 4px solid var(--rank-bronze);
+}
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.rank-badge-gold {
+    background: linear-gradient(135deg, #FFD700, #FFA000);
+    color: #FFFFFF;
+}
+
+.rank-badge-silver {
+    background: linear-gradient(135deg, #C0C0C0, #9E9E9E);
+    color: #FFFFFF;
+}
+
+.rank-badge-bronze {
+    background: linear-gradient(135deg, #CD7F32, #8B4513);
+    color: #FFFFFF;
+}
+
+.card-country-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.card-score-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.875rem;
+}
+
+.card-detail-label {
+    color: var(--text-secondary);
+}
+
+.card-detail-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ================================
+   Metric Cards
+   ================================ */
+.metric-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.metric-delta {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.metric-delta-positive {
+    color: var(--trend-up);
+}
+
+.metric-delta-negative {
+    color: var(--trend-down);
+}
+
+/* ================================
+   Badges (Styled Pills)
+   ================================ */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.badge-excellent {
+    background-color: var(--badge-excellent-bg);
+    color: var(--badge-excellent-text);
+}
+
+.badge-hot-deal {
+    background-color: var(--badge-hot-deal-bg);
+    color: var(--badge-hot-deal-text);
+}
+
+.badge-currency-win {
+    background-color: var(--badge-currency-bg);
+    color: var(--badge-currency-text);
+}
+
+.badge-flight-deal {
+    background-color: var(--badge-flight-bg);
+    color: var(--badge-flight-text);
+}
+
+.badge-deflation {
+    background-color: var(--badge-deflation-bg);
+    color: var(--badge-deflation-text);
+}
+
+/* ================================
+   Trend Indicators
+   ================================ */
+.trend-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.trend-up {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--trend-up);
+}
+
+.trend-down {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--trend-down);
+}
+
+.trend-stable {
+    background-color: rgba(158, 158, 158, 0.1);
+    color: var(--trend-stable);
+}
+
+.trend-arrow-up::before {
+    content: '\2191';
+    margin-right: 2px;
+}
+
+.trend-arrow-down::before {
+    content: '\2193';
+    margin-right: 2px;
+}
+
+.trend-arrow-stable::before {
+    content: '\2194';
+    margin-right: 2px;
+}
+
+/* ================================
+   Score Breakdown Cards
+   ================================ */
+.breakdown-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px var(--shadow-color);
+    border-left: 4px solid var(--border-color);
+}
+
+.breakdown-card-exchange {
+    border-left-color: #1565C0;
+}
+
+.breakdown-card-flight {
+    border-left-color: #E65100;
+}
+
+.breakdown-card-col {
+    border-left-color: #7B1FA2;
+}
+
+.breakdown-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.breakdown-score {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.breakdown-detail {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* ================================
+   Sidebar Styling
+   ================================ */
+.sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ================================
+   AG Grid Custom Styling
+   ================================ */
+.ag-theme-streamlit {
+    --ag-header-background-color: #F8F9FA;
+    --ag-odd-row-background-color: #FFFFFF;
+    --ag-row-hover-color: #F5F5F5;
+    --ag-border-color: #E0E0E0;
+}
+
+.ag-row-top-3 {
+    background-color: #FFFDE7 !important;
+}
+
+.cell-score-excellent {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #2E7D32;
+    font-weight: 600;
+}
+
+.cell-score-good {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #F57F17;
+    font-weight: 600;
+}
+
+.cell-score-average {
+    background-color: rgba(255, 152, 0, 0.15);
+    color: #E65100;
+    font-weight: 600;
+}
+
+.cell-score-poor {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #C62828;
+    font-weight: 600;
+}
+
+/* ================================
+   Export Button
+   ================================ */
+.export-btn {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.export-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* ================================
+   Utility Classes
+   ================================ */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+/* ================================
+   Streamlit Overrides
+   ================================ */
+/* Note: stMetric and stExpander overrides removed to support dark mode.
+   These components now inherit Streamlit's native theming. */
+
+/* Hide Streamlit default footer */
+footer {
+    visibility: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}

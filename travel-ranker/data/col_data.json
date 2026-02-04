@@ -1,0 +1,284 @@
+{
+  "_metadata": {
+    "source": "Embedded Cost of Living data for MVP",
+    "description": "Monthly cost estimates in USD for digital nomads",
+    "last_updated": "2024-01"
+  },
+  "cities": {
+    "Tokyo": {
+      "country": "Japan",
+      "monthly_cost_usd": 1850,
+      "breakdown": {
+        "rent": 900,
+        "food": 450,
+        "transport": 150,
+        "utilities": 100,
+        "misc": 250
+      }
+    },
+    "Seoul": {
+      "country": "South Korea",
+      "monthly_cost_usd": 1550,
+      "breakdown": {
+        "rent": 750,
+        "food": 400,
+        "transport": 100,
+        "utilities": 80,
+        "misc": 220
+      }
+    },
+    "Hong Kong": {
+      "country": "Hong Kong",
+      "monthly_cost_usd": 2300,
+      "breakdown": {
+        "rent": 1400,
+        "food": 400,
+        "transport": 120,
+        "utilities": 100,
+        "misc": 280
+      }
+    },
+    "Shanghai": {
+      "country": "China",
+      "monthly_cost_usd": 1150,
+      "breakdown": {
+        "rent": 550,
+        "food": 300,
+        "transport": 80,
+        "utilities": 70,
+        "misc": 150
+      }
+    },
+    "Bangkok": {
+      "country": "Thailand",
+      "monthly_cost_usd": 1050,
+      "breakdown": {
+        "rent": 450,
+        "food": 300,
+        "transport": 80,
+        "utilities": 70,
+        "misc": 150
+      }
+    },
+    "Ho Chi Minh City": {
+      "country": "Vietnam",
+      "monthly_cost_usd": 850,
+      "breakdown": {
+        "rent": 350,
+        "food": 250,
+        "transport": 60,
+        "utilities": 50,
+        "misc": 140
+      }
+    },
+    "Kuala Lumpur": {
+      "country": "Malaysia",
+      "monthly_cost_usd": 950,
+      "breakdown": {
+        "rent": 400,
+        "food": 280,
+        "transport": 70,
+        "utilities": 60,
+        "misc": 140
+      }
+    },
+    "Jakarta": {
+      "country": "Indonesia",
+      "monthly_cost_usd": 800,
+      "breakdown": {
+        "rent": 350,
+        "food": 220,
+        "transport": 60,
+        "utilities": 50,
+        "misc": 120
+      }
+    },
+    "Manila": {
+      "country": "Philippines",
+      "monthly_cost_usd": 900,
+      "breakdown": {
+        "rent": 380,
+        "food": 260,
+        "transport": 70,
+        "utilities": 60,
+        "misc": 130
+      }
+    },
+    "Singapore": {
+      "country": "Singapore",
+      "monthly_cost_usd": 2900,
+      "breakdown": {
+        "rent": 1700,
+        "food": 500,
+        "transport": 150,
+        "utilities": 150,
+        "misc": 400
+      }
+    },
+    "New Delhi": {
+      "country": "India",
+      "monthly_cost_usd": 650,
+      "breakdown": {
+        "rent": 280,
+        "food": 180,
+        "transport": 50,
+        "utilities": 40,
+        "misc": 100
+      }
+    },
+    "London": {
+      "country": "United Kingdom",
+      "monthly_cost_usd": 2900,
+      "breakdown": {
+        "rent": 1600,
+        "food": 550,
+        "transport": 200,
+        "utilities": 150,
+        "misc": 400
+      }
+    },
+    "Frankfurt": {
+      "country": "Germany",
+      "monthly_cost_usd": 2200,
+      "breakdown": {
+        "rent": 1100,
+        "food": 480,
+        "transport": 150,
+        "utilities": 120,
+        "misc": 350
+      }
+    },
+    "Paris": {
+      "country": "France",
+      "monthly_cost_usd": 2450,
+      "breakdown": {
+        "rent": 1300,
+        "food": 500,
+        "transport": 150,
+        "utilities": 120,
+        "misc": 380
+      }
+    },
+    "Madrid": {
+      "country": "Spain",
+      "monthly_cost_usd": 1850,
+      "breakdown": {
+        "rent": 900,
+        "food": 420,
+        "transport": 120,
+        "utilities": 100,
+        "misc": 310
+      }
+    },
+    "Lisbon": {
+      "country": "Portugal",
+      "monthly_cost_usd": 1650,
+      "breakdown": {
+        "rent": 800,
+        "food": 380,
+        "transport": 110,
+        "utilities": 90,
+        "misc": 270
+      }
+    },
+    "Amsterdam": {
+      "country": "Netherlands",
+      "monthly_cost_usd": 2550,
+      "breakdown": {
+        "rent": 1350,
+        "food": 520,
+        "transport": 150,
+        "utilities": 130,
+        "misc": 400
+      }
+    },
+    "Los Angeles": {
+      "country": "United States",
+      "monthly_cost_usd": 3100,
+      "breakdown": {
+        "rent": 1800,
+        "food": 550,
+        "transport": 200,
+        "utilities": 150,
+        "misc": 400
+      }
+    },
+    "Mexico City": {
+      "country": "Mexico",
+      "monthly_cost_usd": 1150,
+      "breakdown": {
+        "rent": 500,
+        "food": 320,
+        "transport": 80,
+        "utilities": 70,
+        "misc": 180
+      }
+    },
+    "Bogota": {
+      "country": "Colombia",
+      "monthly_cost_usd": 950,
+      "breakdown": {
+        "rent": 400,
+        "food": 280,
+        "transport": 70,
+        "utilities": 60,
+        "misc": 140
+      }
+    },
+    "Buenos Aires": {
+      "country": "Argentina",
+      "monthly_cost_usd": 850,
+      "breakdown": {
+        "rent": 350,
+        "food": 250,
+        "transport": 60,
+        "utilities": 50,
+        "misc": 140
+      }
+    },
+    "Dubai": {
+      "country": "United Arab Emirates",
+      "monthly_cost_usd": 2600,
+      "breakdown": {
+        "rent": 1400,
+        "food": 500,
+        "transport": 180,
+        "utilities": 150,
+        "misc": 370
+      }
+    },
+    "Istanbul": {
+      "country": "Turkey",
+      "monthly_cost_usd": 950,
+      "breakdown": {
+        "rent": 400,
+        "food": 280,
+        "transport": 70,
+        "utilities": 60,
+        "misc": 140
+      }
+    },
+    "Sydney": {
+      "country": "Australia",
+      "monthly_cost_usd": 2700,
+      "breakdown": {
+        "rent": 1500,
+        "food": 520,
+        "transport": 180,
+        "utilities": 140,
+        "misc": 360
+      }
+    },
+    "Auckland": {
+      "country": "New Zealand",
+      "monthly_cost_usd": 2250,
+      "breakdown": {
+        "rent": 1200,
+        "food": 480,
+        "transport": 150,
+        "utilities": 120,
+        "misc": 300
+      }
+    }
+  }
+}

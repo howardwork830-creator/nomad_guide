@@ -1,0 +1,309 @@
+{
+  "origin": {
+    "country": "Taiwan",
+    "airport_code": "TPE",
+    "currency": "TWD"
+  },
+  "destinations": {
+    "japan": {
+      "name": "Japan",
+      "airport_code": "NRT",
+      "currency_code": "JPY",
+      "region": "East Asia",
+      "capital_city": "Tokyo",
+      "baseline": {
+        "exchange_rate": 0.22,
+        "flight_cost_twd": 8500,
+        "monthly_col_usd": 1800
+      }
+    },
+    "south_korea": {
+      "name": "South Korea",
+      "airport_code": "ICN",
+      "currency_code": "KRW",
+      "region": "East Asia",
+      "capital_city": "Seoul",
+      "baseline": {
+        "exchange_rate": 0.024,
+        "flight_cost_twd": 7500,
+        "monthly_col_usd": 1600
+      }
+    },
+    "hong_kong": {
+      "name": "Hong Kong",
+      "airport_code": "HKG",
+      "currency_code": "HKD",
+      "region": "East Asia",
+      "capital_city": "Hong Kong",
+      "baseline": {
+        "exchange_rate": 4.1,
+        "flight_cost_twd": 5500,
+        "monthly_col_usd": 2200
+      }
+    },
+    "china": {
+      "name": "China",
+      "airport_code": "PVG",
+      "currency_code": "CNY",
+      "region": "East Asia",
+      "capital_city": "Shanghai",
+      "baseline": {
+        "exchange_rate": 4.4,
+        "flight_cost_twd": 6000,
+        "monthly_col_usd": 1100
+      }
+    },
+    "thailand": {
+      "name": "Thailand",
+      "airport_code": "BKK",
+      "currency_code": "THB",
+      "region": "Southeast Asia",
+      "capital_city": "Bangkok",
+      "baseline": {
+        "exchange_rate": 0.92,
+        "flight_cost_twd": 6500,
+        "monthly_col_usd": 1000
+      }
+    },
+    "vietnam": {
+      "name": "Vietnam",
+      "airport_code": "SGN",
+      "currency_code": "VND",
+      "region": "Southeast Asia",
+      "capital_city": "Ho Chi Minh City",
+      "baseline": {
+        "exchange_rate": 0.00128,
+        "flight_cost_twd": 5500,
+        "monthly_col_usd": 800
+      }
+    },
+    "malaysia": {
+      "name": "Malaysia",
+      "airport_code": "KUL",
+      "currency_code": "MYR",
+      "region": "Southeast Asia",
+      "capital_city": "Kuala Lumpur",
+      "baseline": {
+        "exchange_rate": 7.2,
+        "flight_cost_twd": 6000,
+        "monthly_col_usd": 900
+      }
+    },
+    "indonesia": {
+      "name": "Indonesia",
+      "airport_code": "CGK",
+      "currency_code": "IDR",
+      "region": "Southeast Asia",
+      "capital_city": "Jakarta",
+      "baseline": {
+        "exchange_rate": 0.002,
+        "flight_cost_twd": 7000,
+        "monthly_col_usd": 750
+      }
+    },
+    "philippines": {
+      "name": "Philippines",
+      "airport_code": "MNL",
+      "currency_code": "PHP",
+      "region": "Southeast Asia",
+      "capital_city": "Manila",
+      "baseline": {
+        "exchange_rate": 0.57,
+        "flight_cost_twd": 5000,
+        "monthly_col_usd": 850
+      }
+    },
+    "singapore": {
+      "name": "Singapore",
+      "airport_code": "SIN",
+      "currency_code": "SGD",
+      "region": "Southeast Asia",
+      "capital_city": "Singapore",
+      "baseline": {
+        "exchange_rate": 23.8,
+        "flight_cost_twd": 7500,
+        "monthly_col_usd": 2800
+      }
+    },
+    "india": {
+      "name": "India",
+      "airport_code": "DEL",
+      "currency_code": "INR",
+      "region": "South Asia",
+      "capital_city": "New Delhi",
+      "baseline": {
+        "exchange_rate": 0.38,
+        "flight_cost_twd": 12000,
+        "monthly_col_usd": 600
+      }
+    },
+    "uk": {
+      "name": "United Kingdom",
+      "airport_code": "LHR",
+      "currency_code": "GBP",
+      "region": "Europe",
+      "capital_city": "London",
+      "baseline": {
+        "exchange_rate": 40.5,
+        "flight_cost_twd": 25000,
+        "monthly_col_usd": 2800
+      }
+    },
+    "germany": {
+      "name": "Germany",
+      "airport_code": "FRA",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Frankfurt",
+      "baseline": {
+        "exchange_rate": 34.5,
+        "flight_cost_twd": 22000,
+        "monthly_col_usd": 2200
+      }
+    },
+    "france": {
+      "name": "France",
+      "airport_code": "CDG",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Paris",
+      "baseline": {
+        "exchange_rate": 34.5,
+        "flight_cost_twd": 23000,
+        "monthly_col_usd": 2400
+      }
+    },
+    "spain": {
+      "name": "Spain",
+      "airport_code": "MAD",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Madrid",
+      "baseline": {
+        "exchange_rate": 34.5,
+        "flight_cost_twd": 24000,
+        "monthly_col_usd": 1800
+      }
+    },
+    "portugal": {
+      "name": "Portugal",
+      "airport_code": "LIS",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Lisbon",
+      "baseline": {
+        "exchange_rate": 34.5,
+        "flight_cost_twd": 25000,
+        "monthly_col_usd": 1600
+      }
+    },
+    "netherlands": {
+      "name": "Netherlands",
+      "airport_code": "AMS",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Amsterdam",
+      "baseline": {
+        "exchange_rate": 34.5,
+        "flight_cost_twd": 22500,
+        "monthly_col_usd": 2500
+      }
+    },
+    "usa": {
+      "name": "United States",
+      "airport_code": "LAX",
+      "currency_code": "USD",
+      "region": "Americas",
+      "capital_city": "Los Angeles",
+      "baseline": {
+        "exchange_rate": 32.0,
+        "flight_cost_twd": 28000,
+        "monthly_col_usd": 3000
+      }
+    },
+    "mexico": {
+      "name": "Mexico",
+      "airport_code": "MEX",
+      "currency_code": "MXN",
+      "region": "Americas",
+      "capital_city": "Mexico City",
+      "baseline": {
+        "exchange_rate": 1.85,
+        "flight_cost_twd": 30000,
+        "monthly_col_usd": 1100
+      }
+    },
+    "colombia": {
+      "name": "Colombia",
+      "airport_code": "BOG",
+      "currency_code": "COP",
+      "region": "Americas",
+      "capital_city": "Bogota",
+      "baseline": {
+        "exchange_rate": 0.008,
+        "flight_cost_twd": 35000,
+        "monthly_col_usd": 900
+      }
+    },
+    "argentina": {
+      "name": "Argentina",
+      "airport_code": "EZE",
+      "currency_code": "ARS",
+      "region": "Americas",
+      "capital_city": "Buenos Aires",
+      "baseline": {
+        "exchange_rate": 0.037,
+        "flight_cost_twd": 38000,
+        "monthly_col_usd": 800
+      }
+    },
+    "uae": {
+      "name": "United Arab Emirates",
+      "airport_code": "DXB",
+      "currency_code": "AED",
+      "region": "Middle East",
+      "capital_city": "Dubai",
+      "baseline": {
+        "exchange_rate": 8.7,
+        "flight_cost_twd": 15000,
+        "monthly_col_usd": 2500
+      }
+    },
+    "turkey": {
+      "name": "Turkey",
+      "airport_code": "IST",
+      "currency_code": "TRY",
+      "region": "Middle East",
+      "capital_city": "Istanbul",
+      "baseline": {
+        "exchange_rate": 0.98,
+        "flight_cost_twd": 18000,
+        "monthly_col_usd": 900
+      }
+    },
+    "australia": {
+      "name": "Australia",
+      "airport_code": "SYD",
+      "currency_code": "AUD",
+      "region": "Oceania",
+      "capital_city": "Sydney",
+      "baseline": {
+        "exchange_rate": 21.0,
+        "flight_cost_twd": 18000,
+        "monthly_col_usd": 2600
+      }
+    },
+    "new_zealand": {
+      "name": "New Zealand",
+      "airport_code": "AKL",
+      "currency_code": "NZD",
+      "region": "Oceania",
+      "capital_city": "Auckland",
+      "baseline": {
+        "exchange_rate": 19.5,
+        "flight_cost_twd": 20000,
+        "monthly_col_usd": 2200
+      }
+    }
+  }
+}
