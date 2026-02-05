@@ -40,27 +40,27 @@ class TestExchangeScore:
 
     def test_no_change(self):
         """No change should give score around 50."""
-        score, change = calculate_exchange_score(1.0, 1.0)
+        score, change, confidence = calculate_exchange_score(1.0, 1.0)
         assert change == 0.0
         assert score == 50.0
 
     def test_positive_change(self):
         """Currency strengthening should give higher score."""
         # 10% increase in rate (TWD strengthened)
-        score, change = calculate_exchange_score(1.1, 1.0)
+        score, change, confidence = calculate_exchange_score(1.1, 1.0)
         assert abs(change - 10.0) < 0.01  # Allow floating point tolerance
         assert score > 50.0
 
     def test_negative_change(self):
         """Currency weakening should give lower score."""
         # 10% decrease in rate (TWD weakened)
-        score, change = calculate_exchange_score(0.9, 1.0)
+        score, change, confidence = calculate_exchange_score(0.9, 1.0)
         assert abs(change - (-10.0)) < 0.01  # Allow floating point tolerance
         assert score < 50.0
 
     def test_zero_baseline(self):
         """Zero baseline should return defaults."""
-        score, change = calculate_exchange_score(1.0, 0)
+        score, change, confidence = calculate_exchange_score(1.0, 0)
         assert score == 50.0
         assert change == 0.0
 
@@ -70,20 +70,20 @@ class TestFlightScore:
 
     def test_no_change(self):
         """No change should give moderate score."""
-        score, change = calculate_flight_score(10000, 10000)
+        score, change, confidence = calculate_flight_score(10000, 10000)
         # Change is inverted (lower cost = positive change)
         assert change == 0.0
 
     def test_lower_cost(self):
         """Lower cost should give higher score."""
-        score, change = calculate_flight_score(8000, 10000)
+        score, change, confidence = calculate_flight_score(8000, 10000)
         # 20% decrease in cost = positive 20% change
         assert change == 20.0
         assert score > 50.0
 
     def test_higher_cost(self):
         """Higher cost should give lower score."""
-        score, change = calculate_flight_score(12000, 10000)
+        score, change, confidence = calculate_flight_score(12000, 10000)
         # 20% increase in cost = negative 20% change
         assert change == -20.0
         assert score < 50.0
@@ -91,8 +91,8 @@ class TestFlightScore:
     def test_absolute_component(self):
         """Verify absolute component affects score."""
         # Same percentage change but different absolute values
-        score_cheap, _ = calculate_flight_score(5000, 5000)
-        score_expensive, _ = calculate_flight_score(40000, 40000)
+        score_cheap, _, _ = calculate_flight_score(5000, 5000)
+        score_expensive, _, _ = calculate_flight_score(40000, 40000)
         # Cheaper absolute should score higher
         assert score_cheap > score_expensive
 
@@ -102,19 +102,19 @@ class TestColScore:
 
     def test_no_change(self):
         """No change should give moderate score."""
-        score, change = calculate_col_score(1500, 1500)
+        score, change, confidence = calculate_col_score(1500, 1500)
         assert change == 0.0
 
     def test_lower_col(self):
         """Lower CoL should give higher score."""
-        score, change = calculate_col_score(1200, 1500)
+        score, change, confidence = calculate_col_score(1200, 1500)
         assert change == 20.0  # 20% decrease = positive change
         assert score > 50.0
 
     def test_higher_col(self):
         """Higher CoL should give lower score than baseline at same CoL."""
-        score_higher, change = calculate_col_score(1800, 1500)
-        score_baseline, _ = calculate_col_score(1500, 1500)
+        score_higher, change, _ = calculate_col_score(1800, 1500)
+        score_baseline, _, _ = calculate_col_score(1500, 1500)
         assert abs(change - (-20.0)) < 0.01  # 20% increase = negative change
         # Score for higher CoL should be lower than score at baseline
         assert score_higher < score_baseline
@@ -122,9 +122,9 @@ class TestColScore:
     def test_absolute_dominates(self):
         """80% absolute weight should dominate scoring."""
         # Very low CoL city
-        score_cheap, _ = calculate_col_score(600, 600)
+        score_cheap, _, _ = calculate_col_score(600, 600)
         # Very high CoL city
-        score_expensive, _ = calculate_col_score(3500, 3500)
+        score_expensive, _, _ = calculate_col_score(3500, 3500)
         # Cheap city should score much higher due to 80% absolute weight
         assert score_cheap > score_expensive + 30
 

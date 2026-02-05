@@ -7,6 +7,8 @@ Provides styled HTML components and CSS loading utilities.
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import streamlit as st
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 def load_css() -> None:
@@ -318,3 +320,29 @@ def get_rank_medal(rank: int) -> str:
         return "3rd"
     else:
         return str(rank)
+
+
+def render_trend_charts(data: List[Dict], country_name: str):
+    """Create 3 line charts for country trends."""
+    if len(data) < 2:
+        return None
+
+    dates = [d['snapshot_date'] for d in data]
+    exchange_rates = [d['exchange_rate'] for d in data]
+    flight_costs = [d['flight_cost'] for d in data]
+    col_amounts = [d['col_amount'] for d in data]
+
+    fig = make_subplots(rows=1, cols=3, subplot_titles=(
+        'Exchange Rate', 'Flight Cost (TWD)', 'Cost of Living (USD)'
+    ))
+
+    # Chart colors matching existing theme
+    fig.add_trace(go.Scatter(x=dates, y=exchange_rates, mode='lines+markers',
+                             line=dict(color='#1565C0')), row=1, col=1)
+    fig.add_trace(go.Scatter(x=dates, y=flight_costs, mode='lines+markers',
+                             line=dict(color='#E65100')), row=1, col=2)
+    fig.add_trace(go.Scatter(x=dates, y=col_amounts, mode='lines+markers',
+                             line=dict(color='#7B1FA2')), row=1, col=3)
+
+    fig.update_layout(height=250, showlegend=False, margin=dict(l=40, r=40, t=40, b=40))
+    return fig

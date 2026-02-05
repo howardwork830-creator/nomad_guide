@@ -1,0 +1,830 @@
+{
+  "_metadata": {
+    "version": "2.0",
+    "generated_at": "2026-02-04T00:00:00Z",
+    "methodology": "3-year weighted average with recency weighting (Y1: 0.5, Y2: 0.3, Y3: 0.2)",
+    "sources": ["central_banks", "oanda", "numbeo", "expatistan", "google_flights_historical"],
+    "notes": "Exchange rates are TWD to foreign currency. Flight costs are round-trip from TPE. CoL is monthly budget for digital nomad lifestyle."
+  },
+  "baselines": {
+    "japan": {
+      "currency": "JPY",
+      "exchange_rate": {
+        "value": 4.65,
+        "source": "central_bank_average",
+        "confidence": 0.95,
+        "last_updated": "2026-01-30",
+        "historical_range": [4.2, 5.1],
+        "notes": "Bank of Japan / Bank of Taiwan cross rate. ~145-155 JPY/USD, ~30-32 TWD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 8500,
+        "source": "google_flights_historical",
+        "confidence": 0.90,
+        "seasonal_range": [7000, 12000],
+        "peak_seasons": ["cherry_blossom_mar_apr", "autumn_oct_nov", "new_year"],
+        "notes": "TPE-NRT/HND direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1850,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 1100,
+          "food": 450,
+          "transport": 150,
+          "misc": 150
+        },
+        "city_reference": "Tokyo",
+        "notes": "Shared apartment or small studio in 23 wards"
+      }
+    },
+    "south_korea": {
+      "currency": "KRW",
+      "exchange_rate": {
+        "value": 0.0237,
+        "source": "central_bank_average",
+        "confidence": 0.95,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.022, 0.026],
+        "notes": "Bank of Korea rate. ~1300-1400 KRW/USD"
+      },
+      "flight_cost_twd": {
+        "value": 7500,
+        "source": "google_flights_historical",
+        "confidence": 0.90,
+        "seasonal_range": [5500, 10000],
+        "peak_seasons": ["cherry_blossom_apr", "autumn_oct", "holidays"],
+        "notes": "TPE-ICN direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1650,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 900,
+          "food": 400,
+          "transport": 150,
+          "misc": 200
+        },
+        "city_reference": "Seoul",
+        "notes": "Officetel or small apartment outside Gangnam"
+      }
+    },
+    "hong_kong": {
+      "currency": "HKD",
+      "exchange_rate": {
+        "value": 4.05,
+        "source": "central_bank_average",
+        "confidence": 0.98,
+        "last_updated": "2026-01-30",
+        "historical_range": [3.9, 4.2],
+        "notes": "HKD pegged to USD, very stable. ~7.75-7.85 HKD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 5500,
+        "source": "google_flights_historical",
+        "confidence": 0.92,
+        "seasonal_range": [4500, 8000],
+        "peak_seasons": ["chinese_new_year", "golden_week", "christmas"],
+        "notes": "TPE-HKG direct, economy, round-trip, ~1.5 hour flight"
+      },
+      "monthly_col_usd": {
+        "value": 2300,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 1500,
+          "food": 500,
+          "transport": 150,
+          "misc": 150
+        },
+        "city_reference": "Hong Kong",
+        "notes": "One of world's most expensive cities, shared flat typical"
+      }
+    },
+    "china": {
+      "currency": "CNY",
+      "exchange_rate": {
+        "value": 4.38,
+        "source": "pboc_average",
+        "confidence": 0.90,
+        "last_updated": "2026-01-30",
+        "historical_range": [4.2, 4.6],
+        "notes": "People's Bank of China rate. ~7.0-7.3 CNY/USD"
+      },
+      "flight_cost_twd": {
+        "value": 6000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [5000, 9000],
+        "peak_seasons": ["chinese_new_year", "golden_week_oct", "summer"],
+        "notes": "TPE-PVG/SHA direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1150,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 600,
+          "food": 300,
+          "transport": 100,
+          "misc": 150
+        },
+        "city_reference": "Shanghai",
+        "notes": "Varies greatly by tier of city"
+      }
+    },
+    "thailand": {
+      "currency": "THB",
+      "exchange_rate": {
+        "value": 0.91,
+        "source": "bot_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.85, 1.0],
+        "notes": "Bank of Thailand rate. ~33-36 THB/USD"
+      },
+      "flight_cost_twd": {
+        "value": 6500,
+        "source": "google_flights_historical",
+        "confidence": 0.90,
+        "seasonal_range": [4500, 9000],
+        "peak_seasons": ["winter_dec_feb", "songkran_apr"],
+        "notes": "TPE-BKK direct, economy, round-trip, popular nomad destination"
+      },
+      "monthly_col_usd": {
+        "value": 1050,
+        "source": "numbeo_expatistan_nomadlist",
+        "confidence": 0.92,
+        "breakdown": {
+          "accommodation": 500,
+          "food": 300,
+          "transport": 100,
+          "misc": 150
+        },
+        "city_reference": "Bangkok",
+        "notes": "Very popular digital nomad destination, good value"
+      }
+    },
+    "vietnam": {
+      "currency": "VND",
+      "exchange_rate": {
+        "value": 0.00127,
+        "source": "sbv_average",
+        "confidence": 0.90,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.0012, 0.0014],
+        "notes": "State Bank of Vietnam rate. ~24,000-25,500 VND/USD"
+      },
+      "flight_cost_twd": {
+        "value": 5500,
+        "source": "google_flights_historical",
+        "confidence": 0.88,
+        "seasonal_range": [4000, 8000],
+        "peak_seasons": ["tet_jan_feb", "summer"],
+        "notes": "TPE-SGN/HAN direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 850,
+        "source": "numbeo_expatistan_nomadlist",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 400,
+          "food": 250,
+          "transport": 80,
+          "misc": 120
+        },
+        "city_reference": "Ho Chi Minh City",
+        "notes": "Very affordable, growing nomad scene"
+      }
+    },
+    "malaysia": {
+      "currency": "MYR",
+      "exchange_rate": {
+        "value": 7.15,
+        "source": "bnm_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [6.8, 7.5],
+        "notes": "Bank Negara Malaysia rate. ~4.4-4.7 MYR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 6000,
+        "source": "google_flights_historical",
+        "confidence": 0.88,
+        "seasonal_range": [5000, 8500],
+        "peak_seasons": ["chinese_new_year", "hari_raya", "school_holidays"],
+        "notes": "TPE-KUL direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 950,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 450,
+          "food": 280,
+          "transport": 100,
+          "misc": 120
+        },
+        "city_reference": "Kuala Lumpur",
+        "notes": "Good infrastructure, English-speaking, nomad-friendly"
+      }
+    },
+    "indonesia": {
+      "currency": "IDR",
+      "exchange_rate": {
+        "value": 0.00198,
+        "source": "bi_average",
+        "confidence": 0.88,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.0018, 0.0022],
+        "notes": "Bank Indonesia rate. ~15,500-16,500 IDR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 7000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [5500, 10000],
+        "peak_seasons": ["summer", "christmas_new_year", "lebaran"],
+        "notes": "TPE-CGK/DPS, may require connection, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 800,
+        "source": "numbeo_expatistan_nomadlist",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 350,
+          "food": 250,
+          "transport": 80,
+          "misc": 120
+        },
+        "city_reference": "Bali/Jakarta",
+        "notes": "Bali very popular for nomads, Jakarta cheaper"
+      }
+    },
+    "philippines": {
+      "currency": "PHP",
+      "exchange_rate": {
+        "value": 0.565,
+        "source": "bsp_average",
+        "confidence": 0.90,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.52, 0.62],
+        "notes": "Bangko Sentral ng Pilipinas rate. ~55-58 PHP/USD"
+      },
+      "flight_cost_twd": {
+        "value": 5200,
+        "source": "google_flights_historical",
+        "confidence": 0.88,
+        "seasonal_range": [4000, 7500],
+        "peak_seasons": ["christmas_new_year", "holy_week_apr", "summer"],
+        "notes": "TPE-MNL direct, economy, round-trip, short flight"
+      },
+      "monthly_col_usd": {
+        "value": 900,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 400,
+          "food": 280,
+          "transport": 100,
+          "misc": 120
+        },
+        "city_reference": "Manila/Cebu",
+        "notes": "English-speaking, growing startup scene"
+      }
+    },
+    "singapore": {
+      "currency": "SGD",
+      "exchange_rate": {
+        "value": 23.5,
+        "source": "mas_average",
+        "confidence": 0.95,
+        "last_updated": "2026-01-30",
+        "historical_range": [22.5, 24.5],
+        "notes": "Monetary Authority of Singapore rate. ~1.32-1.38 SGD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 7500,
+        "source": "google_flights_historical",
+        "confidence": 0.90,
+        "seasonal_range": [6000, 10000],
+        "peak_seasons": ["chinese_new_year", "f1_sep", "christmas"],
+        "notes": "TPE-SIN direct, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2900,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.92,
+        "breakdown": {
+          "accommodation": 1800,
+          "food": 650,
+          "transport": 200,
+          "misc": 250
+        },
+        "city_reference": "Singapore",
+        "notes": "Very expensive, but excellent infrastructure"
+      }
+    },
+    "india": {
+      "currency": "INR",
+      "exchange_rate": {
+        "value": 0.38,
+        "source": "rbi_average",
+        "confidence": 0.90,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.35, 0.42],
+        "notes": "Reserve Bank of India rate. ~82-85 INR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 12500,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [10000, 16000],
+        "peak_seasons": ["diwali_oct_nov", "winter_dec_jan", "holi_mar"],
+        "notes": "TPE-DEL/BOM, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 650,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 300,
+          "food": 180,
+          "transport": 70,
+          "misc": 100
+        },
+        "city_reference": "New Delhi/Bangalore",
+        "notes": "Very affordable, tech hubs in Bangalore/Hyderabad"
+      }
+    },
+    "uk": {
+      "currency": "GBP",
+      "exchange_rate": {
+        "value": 40.2,
+        "source": "boe_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [38.0, 43.0],
+        "notes": "Bank of England rate. ~0.78-0.82 GBP/USD"
+      },
+      "flight_cost_twd": {
+        "value": 25000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [20000, 35000],
+        "peak_seasons": ["summer_jun_aug", "christmas", "easter"],
+        "notes": "TPE-LHR, usually one stop, economy, round-trip, ~15-18 hours"
+      },
+      "monthly_col_usd": {
+        "value": 2850,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1700,
+          "food": 650,
+          "transport": 250,
+          "misc": 250
+        },
+        "city_reference": "London",
+        "notes": "London very expensive, other UK cities more affordable"
+      }
+    },
+    "germany": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 34.2,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [32.5, 36.0],
+        "notes": "European Central Bank rate. ~0.90-0.95 EUR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 22000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [18000, 30000],
+        "peak_seasons": ["summer_jun_aug", "oktoberfest_sep_oct", "christmas"],
+        "notes": "TPE-FRA, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2250,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 1200,
+          "food": 550,
+          "transport": 250,
+          "misc": 250
+        },
+        "city_reference": "Berlin",
+        "notes": "Berlin relatively affordable for Western Europe"
+      }
+    },
+    "france": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 34.2,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [32.5, 36.0],
+        "notes": "European Central Bank rate, same as Germany"
+      },
+      "flight_cost_twd": {
+        "value": 23000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [19000, 32000],
+        "peak_seasons": ["summer_jun_aug", "christmas", "fashion_weeks"],
+        "notes": "TPE-CDG, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2450,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1400,
+          "food": 580,
+          "transport": 220,
+          "misc": 250
+        },
+        "city_reference": "Paris",
+        "notes": "Paris expensive, but smaller cities much cheaper"
+      }
+    },
+    "spain": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 34.2,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [32.5, 36.0],
+        "notes": "European Central Bank rate"
+      },
+      "flight_cost_twd": {
+        "value": 24000,
+        "source": "google_flights_historical",
+        "confidence": 0.83,
+        "seasonal_range": [20000, 33000],
+        "peak_seasons": ["summer_jun_aug", "easter", "christmas"],
+        "notes": "TPE-MAD/BCN, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1850,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 950,
+          "food": 480,
+          "transport": 180,
+          "misc": 240
+        },
+        "city_reference": "Madrid/Barcelona",
+        "notes": "More affordable than Northern Europe, popular nomad spots"
+      }
+    },
+    "portugal": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 34.2,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [32.5, 36.0],
+        "notes": "European Central Bank rate"
+      },
+      "flight_cost_twd": {
+        "value": 25000,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [21000, 35000],
+        "peak_seasons": ["summer_jun_aug", "web_summit_nov", "easter"],
+        "notes": "TPE-LIS, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1700,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 900,
+          "food": 420,
+          "transport": 150,
+          "misc": 230
+        },
+        "city_reference": "Lisbon",
+        "notes": "Very popular nomad destination, good weather year-round"
+      }
+    },
+    "netherlands": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 34.2,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [32.5, 36.0],
+        "notes": "European Central Bank rate"
+      },
+      "flight_cost_twd": {
+        "value": 22500,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [18500, 30000],
+        "peak_seasons": ["tulip_season_apr_may", "summer", "christmas"],
+        "notes": "TPE-AMS, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2550,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1450,
+          "food": 580,
+          "transport": 250,
+          "misc": 270
+        },
+        "city_reference": "Amsterdam",
+        "notes": "Housing very expensive, but good quality of life"
+      }
+    },
+    "usa": {
+      "currency": "USD",
+      "exchange_rate": {
+        "value": 31.8,
+        "source": "fed_average",
+        "confidence": 0.95,
+        "last_updated": "2026-01-30",
+        "historical_range": [30.0, 33.0],
+        "notes": "Federal Reserve rate. Base currency for comparison."
+      },
+      "flight_cost_twd": {
+        "value": 28000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [23000, 38000],
+        "peak_seasons": ["summer_jun_aug", "thanksgiving_nov", "christmas"],
+        "notes": "TPE-LAX/SFO, direct or one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 3100,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 1900,
+          "food": 700,
+          "transport": 250,
+          "misc": 250
+        },
+        "city_reference": "Los Angeles",
+        "notes": "Varies dramatically by city, coastal cities very expensive"
+      }
+    },
+    "mexico": {
+      "currency": "MXN",
+      "exchange_rate": {
+        "value": 1.82,
+        "source": "banxico_average",
+        "confidence": 0.88,
+        "last_updated": "2026-01-30",
+        "historical_range": [1.7, 2.0],
+        "notes": "Banco de Mexico rate. ~17-18 MXN/USD"
+      },
+      "flight_cost_twd": {
+        "value": 30000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [25000, 40000],
+        "peak_seasons": ["winter_dec_mar", "summer", "dia_de_muertos_nov"],
+        "notes": "TPE-MEX, usually one stop via USA/Japan, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1150,
+        "source": "numbeo_expatistan_nomadlist",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 550,
+          "food": 320,
+          "transport": 100,
+          "misc": 180
+        },
+        "city_reference": "Mexico City",
+        "notes": "Very popular nomad destination, good food and culture"
+      }
+    },
+    "colombia": {
+      "currency": "COP",
+      "exchange_rate": {
+        "value": 0.0078,
+        "source": "banrep_average",
+        "confidence": 0.85,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.007, 0.009],
+        "notes": "Banco de la Republica rate. ~4000-4200 COP/USD"
+      },
+      "flight_cost_twd": {
+        "value": 35000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [28000, 45000],
+        "peak_seasons": ["dec_jan", "easter", "summer"],
+        "notes": "TPE-BOG, usually 2 stops, economy, round-trip, long journey"
+      },
+      "monthly_col_usd": {
+        "value": 950,
+        "source": "numbeo_expatistan_nomadlist",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 450,
+          "food": 280,
+          "transport": 100,
+          "misc": 120
+        },
+        "city_reference": "Medellin",
+        "notes": "Growing nomad scene, especially Medellin"
+      }
+    },
+    "argentina": {
+      "currency": "ARS",
+      "exchange_rate": {
+        "value": 0.035,
+        "source": "bcra_average",
+        "confidence": 0.60,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.02, 0.05],
+        "notes": "Banco Central. HIGHLY VOLATILE. Blue dollar rate often differs significantly."
+      },
+      "flight_cost_twd": {
+        "value": 38000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [32000, 50000],
+        "peak_seasons": ["summer_dec_feb", "winter_jun_aug"],
+        "notes": "TPE-EZE, usually 2 stops, economy, round-trip, very long journey"
+      },
+      "monthly_col_usd": {
+        "value": 850,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.70,
+        "breakdown": {
+          "accommodation": 400,
+          "food": 250,
+          "transport": 80,
+          "misc": 120
+        },
+        "city_reference": "Buenos Aires",
+        "notes": "Currency volatility makes budgeting difficult"
+      }
+    },
+    "uae": {
+      "currency": "AED",
+      "exchange_rate": {
+        "value": 8.65,
+        "source": "cbuae_average",
+        "confidence": 0.98,
+        "last_updated": "2026-01-30",
+        "historical_range": [8.5, 8.8],
+        "notes": "Central Bank of UAE. AED pegged to USD at 3.6725, very stable."
+      },
+      "flight_cost_twd": {
+        "value": 15500,
+        "source": "google_flights_historical",
+        "confidence": 0.88,
+        "seasonal_range": [12000, 22000],
+        "peak_seasons": ["winter_nov_mar", "eid", "new_year"],
+        "notes": "TPE-DXB, direct Emirates available, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2600,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1500,
+          "food": 600,
+          "transport": 250,
+          "misc": 250
+        },
+        "city_reference": "Dubai",
+        "notes": "Expensive but tax-free income"
+      }
+    },
+    "turkey": {
+      "currency": "TRY",
+      "exchange_rate": {
+        "value": 0.95,
+        "source": "tcmb_average",
+        "confidence": 0.65,
+        "last_updated": "2026-01-30",
+        "historical_range": [0.7, 1.3],
+        "notes": "Central Bank of Turkey. HIGHLY VOLATILE. ~32-36 TRY/USD"
+      },
+      "flight_cost_twd": {
+        "value": 18000,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [14000, 25000],
+        "peak_seasons": ["summer_jun_aug", "ramadan_end", "christmas"],
+        "notes": "TPE-IST, one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 950,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.75,
+        "breakdown": {
+          "accommodation": 450,
+          "food": 280,
+          "transport": 100,
+          "misc": 120
+        },
+        "city_reference": "Istanbul",
+        "notes": "Currency volatility affects CoL significantly"
+      }
+    },
+    "australia": {
+      "currency": "AUD",
+      "exchange_rate": {
+        "value": 20.8,
+        "source": "rba_average",
+        "confidence": 0.92,
+        "last_updated": "2026-01-30",
+        "historical_range": [19.5, 22.0],
+        "notes": "Reserve Bank of Australia rate. ~0.65-0.70 AUD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 18500,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [15000, 25000],
+        "peak_seasons": ["summer_dec_feb", "easter", "school_holidays"],
+        "notes": "TPE-SYD, direct available, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2700,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 1550,
+          "food": 650,
+          "transport": 250,
+          "misc": 250
+        },
+        "city_reference": "Sydney",
+        "notes": "High quality of life but expensive, especially Sydney/Melbourne"
+      }
+    },
+    "new_zealand": {
+      "currency": "NZD",
+      "exchange_rate": {
+        "value": 19.2,
+        "source": "rbnz_average",
+        "confidence": 0.90,
+        "last_updated": "2026-01-30",
+        "historical_range": [18.0, 20.5],
+        "notes": "Reserve Bank of New Zealand rate. ~0.60-0.65 NZD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 20500,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [17000, 28000],
+        "peak_seasons": ["summer_dec_feb", "ski_season_jun_sep"],
+        "notes": "TPE-AKL, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2300,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1300,
+          "food": 550,
+          "transport": 200,
+          "misc": 250
+        },
+        "city_reference": "Auckland",
+        "notes": "Beautiful country, good work-life balance"
+      }
+    }
+  },
+  "_validation": {
+    "exchange_rate_sanity_checks": {
+      "JPY": "~4.5-5.0 TWD/JPY, JPY ~145-155/USD",
+      "USD": "~31-33 TWD/USD baseline",
+      "EUR": "~34-35 TWD/EUR, EUR ~0.92/USD",
+      "GBP": "~40-42 TWD/GBP, GBP ~0.78/USD"
+    },
+    "flight_cost_ranges": {
+      "nearby_asia": "5000-10000 TWD",
+      "far_asia": "10000-20000 TWD",
+      "europe": "20000-35000 TWD",
+      "americas": "25000-50000 TWD"
+    },
+    "col_ranges": {
+      "budget_destinations": "600-1000 USD/month",
+      "moderate_destinations": "1000-2000 USD/month",
+      "expensive_destinations": "2000-3500 USD/month"
+    }
+  }
+}

@@ -8,11 +8,16 @@ A tool for ranking travel destinations based on:
 
 Origin: Taiwan (TPE)
 Display Currency: TWD
+
+Enhanced with:
+- Data quality indicators
+- Freshness tracking
+- Health monitoring
+- Graceful degradation
 """
 
 import os
 import json
-import random
 from datetime import datetime, date
 from pathlib import Path
 from typing import Dict, Any, List, Optional
@@ -40,15 +45,26 @@ from utils.scoring import (
     classify_trend,
     BADGE_STYLES
 )
-from utils.cache import fetch_cached_data, save_cache, get_cache_age
-from utils.database import init_database, store_daily_snapshot, get_history
+from utils.cache import (
+    fetch_cached_data,
+    save_cache,
+    get_cache_age,
+    check_cache_health
+)
+from utils.database import (
+    init_database,
+    store_daily_snapshot,
+    get_history,
+    get_data_quality_stats,
+    get_country_trend_data
+)
 from utils.api_clients import (
     SerpApiClient,
     ExchangeRateClient,
     get_col_for_country,
     load_countries,
-    get_mock_flight_cost,
-    get_mock_exchange_rate
+    get_baseline_data,
+    load_baselines_v2
 )
 from utils.ui_helpers import (
     load_css,
@@ -60,11 +76,31 @@ from utils.ui_helpers import (
     render_metric_card,
     render_score_breakdown_card,
     get_simple_trend_arrow,
-    format_ag_grid_badges
+    format_ag_grid_badges,
+    render_trend_charts
 )
+from utils.data_quality import (
+    DataSource,
+    DataWithProvenance,
+    DestinationDataQuality,
+    ProvenanceMetadata,
+    get_quality_badge_html,
+    get_freshness_indicator_html,
+    get_source_label
+)
+from utils.health import (
+    get_system_health,
+    get_health_summary,
+    set_last_successful_update,
+    HealthStatus
+)
+from utils.logging_config import get_logger, metrics
 
 # Load environment variables
 load_dotenv()
+
+# Logger
+logger = get_logger("app")
 
 # Page config
 st.set_page_config(
@@ -98,13 +134,13 @@ def get_data_status() -> str:
 
 def get_current_data(countries: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
     """
-    Fetch current data for all destinations.
+    Fetch current data for all destinations with provenance tracking.
 
     Uses live APIs if configured, falls back to cached data,
-    then to mock data if needed.
+    then to baseline data if needed. No random variation.
 
     Returns:
-        Dictionary mapping country_key to current data
+        Dictionary mapping country_key to current data with quality info
     """
     serpapi = SerpApiClient()
     exchange_client = ExchangeRateClient()
@@ -113,69 +149,144 @@ def get_current_data(countries: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
 
     # Try to get exchange rates (single API call for all currencies)
     exchange_rates = None
-    exchange_cached = False
+    exchange_source = DataSource.BASELINE
 
     if use_live_apis:
-        # Try cache first
-        cached_exchange = fetch_cached_data("exchange")
+        # Try cache first with stale fallback
+        cached_exchange, cache_source = fetch_cached_data("exchange", allow_stale=True)
         if cached_exchange:
             exchange_rates = cached_exchange
-            exchange_cached = True
+            exchange_source = cache_source
+            metrics.record_cache_hit()
         else:
-            exchange_rates = exchange_client.get_rates(DISPLAY_CURRENCY)
-            if exchange_rates:
-                save_cache("exchange", {"rates": exchange_rates})
-                exchange_rates = {"rates": exchange_rates}
+            # Try live API
+            api_rates = exchange_client.get_rates(DISPLAY_CURRENCY)
+            if api_rates:
+                # Extract raw values for caching
+                raw_rates = {k: v.value for k, v in api_rates.items()}
+                save_cache("exchange", {"rates": raw_rates})
+                exchange_rates = {"rates": raw_rates}
+                exchange_source = DataSource.LIVE_API
+                metrics.record_cache_miss()
 
     current_data = {}
     destinations = countries.get("destinations", {})
 
     for country_key, country_info in destinations.items():
         currency_code = country_info.get("currency_code", "USD")
-        baseline = country_info.get("baseline", {})
         airport_code = country_info.get("airport_code", "")
         country_name = country_info.get("name", country_key)
 
+        # Get baseline data with provenance
+        baseline_data = get_baseline_data(country_key)
+        baseline = country_info.get("baseline", {})
+
+        # Initialize quality tracking
+        quality = DestinationDataQuality(
+            country_key=country_key,
+            country_name=country_name
+        )
+
         # Get exchange rate
         current_rate = None
+        rate_source = DataSource.BASELINE
+
         if exchange_rates and "rates" in exchange_rates:
-            current_rate = exchange_rates["rates"].get(currency_code)
+            rate_value = exchange_rates["rates"].get(currency_code)
+            if rate_value:
+                current_rate = rate_value
+                rate_source = exchange_source
 
         if current_rate is None:
-            current_rate = baseline.get("exchange_rate", 1.0)
-            # Add small random variation for demo purposes
-            current_rate *= random.uniform(0.95, 1.05)
+            # Use baseline - NO random variation for deterministic results
+            if "exchange_rate" in baseline_data:
+                current_rate = baseline_data["exchange_rate"].value
+                rate_source = DataSource.BASELINE
+            else:
+                current_rate = baseline.get("exchange_rate", 1.0)
+                rate_source = DataSource.BASELINE
+
+        # Create provenance for exchange rate
+        quality.exchange_data = DataWithProvenance(
+            value=current_rate,
+            source=rate_source,
+            fetched_at=datetime.now(),
+            field_name="exchange_rate",
+            quality_score=90 if rate_source == DataSource.LIVE_API else (
+                80 if rate_source == DataSource.CACHE else 40
+            )
+        )
 
         # Get flight cost
         current_flight = None
+        flight_source = DataSource.BASELINE
 
         if use_live_apis and not USE_MOCK_DATA:
-            # Try cache first
-            cached_flight = fetch_cached_data("flights", country_key)
+            # Try cache first with stale fallback
+            cached_flight, cache_src = fetch_cached_data("flights", country_key, allow_stale=True)
             if cached_flight:
                 current_flight = cached_flight.get("price")
+                flight_source = cache_src
             else:
-                flight_price = serpapi.get_flight_price(ORIGIN_AIRPORT, airport_code)
-                if flight_price:
-                    current_flight = flight_price
-                    save_cache("flights", {"price": flight_price}, country_key)
+                # Try live API
+                flight_result = serpapi.get_flight_price(ORIGIN_AIRPORT, airport_code)
+                if flight_result:
+                    current_flight = flight_result.value
+                    flight_source = DataSource.LIVE_API
+                    save_cache("flights", {"price": current_flight}, country_key)
 
         if current_flight is None:
-            current_flight = baseline.get("flight_cost_twd", 10000)
-            # Add small random variation for demo purposes
-            current_flight *= random.uniform(0.90, 1.10)
+            # Use baseline - NO random variation
+            if "flight_cost" in baseline_data:
+                current_flight = baseline_data["flight_cost"].value
+                flight_source = DataSource.BASELINE
+            else:
+                current_flight = baseline.get("flight_cost_twd", 10000)
+                flight_source = DataSource.BASELINE
 
-        # Get cost of living
+        # Create provenance for flight
+        quality.flight_data = DataWithProvenance(
+            value=current_flight,
+            source=flight_source,
+            fetched_at=datetime.now(),
+            field_name="flight_cost",
+            quality_score=90 if flight_source == DataSource.LIVE_API else (
+                80 if flight_source == DataSource.CACHE else 40
+            )
+        )
+
+        # Get cost of living (from embedded data or baseline)
         current_col = get_col_for_country(country_name)
+        col_source = DataSource.CACHE if current_col else DataSource.BASELINE
+
         if current_col is None:
-            current_col = baseline.get("monthly_col_usd", 1500)
+            if "col" in baseline_data:
+                current_col = baseline_data["col"].value
+            else:
+                current_col = baseline.get("monthly_col_usd", 1500)
+            col_source = DataSource.BASELINE
+
+        # Create provenance for CoL
+        quality.col_data = DataWithProvenance(
+            value=current_col,
+            source=col_source,
+            fetched_at=datetime.now(),
+            field_name="col",
+            quality_score=70 if col_source == DataSource.CACHE else 40
+        )
+
+        # Recalculate overall quality
+        quality._calculate_overall_quality()
 
         current_data[country_key] = {
             "exchange_rate": current_rate,
             "flight_cost": current_flight,
             "col": current_col,
-            "cached_exchange": exchange_cached,
-            "country_info": country_info
+            "exchange_source": rate_source,
+            "flight_source": flight_source,
+            "col_source": col_source,
+            "country_info": country_info,
+            "quality": quality,
         }
 
     return current_data
@@ -194,22 +305,40 @@ def calculate_rankings(countries: Dict[str, Any], current_data: Dict[str, Dict[s
     for country_key, country_info in destinations.items():
         baseline = country_info.get("baseline", {})
         current = current_data.get(country_key, {})
+        quality = current.get("quality")
 
-        # Calculate score
+        # Calculate score with quality tracking
         score_data = calculate_destination_score(
             current_exchange_rate=current.get("exchange_rate", baseline.get("exchange_rate", 1.0)),
             baseline_exchange_rate=baseline.get("exchange_rate", 1.0),
             current_flight_cost=current.get("flight_cost", baseline.get("flight_cost_twd", 10000)),
             baseline_flight_cost=baseline.get("flight_cost_twd", 10000),
             current_col=current.get("col", baseline.get("monthly_col_usd", 1500)),
-            baseline_col=baseline.get("monthly_col_usd", 1500)
+            baseline_col=baseline.get("monthly_col_usd", 1500),
+            currency=country_info.get("currency_code", "USD"),
+            country=country_info.get("name", ""),
+            data_quality=quality
         )
 
         badges = assign_badges(score_data)
         components = score_data.get("components", {})
 
-        # Store snapshot
-        store_daily_snapshot(country_key, country_info.get("name", ""), score_data, badges)
+        # Create provenance for database
+        provenance = None
+        if quality:
+            provenance = ProvenanceMetadata.from_destination_quality(quality)
+
+        # Store snapshot with provenance
+        store_daily_snapshot(
+            country_key,
+            country_info.get("name", ""),
+            score_data,
+            badges,
+            provenance=provenance
+        )
+
+        # Calculate quality score for display
+        quality_score = quality.overall_quality_score if quality else 50
 
         rankings.append({
             "country_key": country_key,
@@ -224,8 +353,10 @@ def calculate_rankings(countries: Dict[str, Any], current_data: Dict[str, Dict[s
             "Badges": format_ag_grid_badges(badges) if badges else "",
             "Flight Cost (TWD)": int(current.get("flight_cost", 0)),
             "Monthly CoL (USD)": int(current.get("col", 0)),
+            "Quality": round(quality_score, 0),
             "score_data": score_data,
-            "badges_list": badges
+            "badges_list": badges,
+            "quality_info": quality,
         })
 
     # Sort by score descending
@@ -235,12 +366,15 @@ def calculate_rankings(countries: Dict[str, Any], current_data: Dict[str, Dict[s
     for i, r in enumerate(rankings, 1):
         r["Rank"] = i
 
+    # Record successful update
+    set_last_successful_update()
+
     return pd.DataFrame(rankings)
 
 
 def render_header(data_status: str):
-    """Render clean dashboard header."""
-    col1, col2 = st.columns([3, 1])
+    """Render clean dashboard header with health info."""
+    col1, col2, col3 = st.columns([3, 1, 1])
 
     with col1:
         st.markdown(
@@ -255,6 +389,23 @@ def render_header(data_status: str):
     with col2:
         st.markdown(
             f'<div style="text-align: right; padding-top: 1rem;">{render_status_indicator(data_status)}</div>',
+            unsafe_allow_html=True
+        )
+
+    with col3:
+        # Quick health indicator
+        health = get_health_summary()
+        status_color = {
+            "healthy": "#4CAF50",
+            "degraded": "#FFC107",
+            "unhealthy": "#F44336"
+        }.get(health["status"], "#9E9E9E")
+
+        st.markdown(
+            f'''<div style="text-align: right; padding-top: 1rem;">
+                <span style="color: {status_color};">●</span>
+                <span style="font-size: 0.8rem; color: #666;">System {health["status"].title()}</span>
+            </div>''',
             unsafe_allow_html=True
         )
 
@@ -277,10 +428,18 @@ def render_top_3_cards(df: pd.DataFrame):
             )
             st.markdown(card_html, unsafe_allow_html=True)
 
+            # Add quality indicator below card
+            quality = row.get("quality_info")
+            if quality:
+                st.markdown(
+                    f'<div style="text-align: center; margin-top: 0.5rem;">{get_quality_badge_html(quality.overall_quality_score)}</div>',
+                    unsafe_allow_html=True
+                )
+
 
 def render_stats_row(df: pd.DataFrame):
     """Render statistics row with metric cards."""
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
         st.metric("Destinations", len(df))
@@ -293,6 +452,9 @@ def render_stats_row(df: pd.DataFrame):
     with col4:
         top_dest = df.iloc[0]["Country"] if len(df) > 0 else "N/A"
         st.metric("Top Pick", top_dest)
+    with col5:
+        avg_quality = df["Quality"].mean()
+        st.metric("Data Quality", f"{avg_quality:.0f}%")
 
     # Style metric cards if available
     if EXTRAS_AVAILABLE:
@@ -344,6 +506,16 @@ def render_sidebar(df: pd.DataFrame) -> Dict[str, Any]:
         help="Filter by minimum destination score"
     )
 
+    # Quality filter
+    min_quality = st.sidebar.slider(
+        "Minimum Data Quality",
+        min_value=0,
+        max_value=100,
+        value=0,
+        step=10,
+        help="Filter by minimum data quality score"
+    )
+
     st.sidebar.divider()
 
     # Data status
@@ -358,14 +530,24 @@ def render_sidebar(df: pd.DataFrame) -> Dict[str, Any]:
     else:
         st.sidebar.text("Exchange rates: Using baseline data")
 
+    # Cache health
+    cache_health = check_cache_health()
+    st.sidebar.text(f"Cache files: {cache_health['valid_count']} valid, {cache_health['stale_count']} stale")
+
     if USE_MOCK_DATA:
         st.sidebar.info("Running in demo mode with baseline data")
+
+    # Health check expander
+    with st.sidebar.expander("System Health"):
+        health = get_health_summary()
+        st.json(health)
 
     return {
         "regions": selected_regions,
         "budget_range": budget_range,
         "hot_deals_only": hot_deals_only,
-        "min_score": min_score
+        "min_score": min_score,
+        "min_quality": min_quality
     }
 
 
@@ -391,6 +573,9 @@ def apply_filters(df: pd.DataFrame, filters: Dict[str, Any]) -> pd.DataFrame:
     # Score filter
     filtered = filtered[filtered["Score"] >= filters["min_score"]]
 
+    # Quality filter
+    filtered = filtered[filtered["Quality"] >= filters["min_quality"]]
+
     # Re-rank after filtering
     filtered = filtered.reset_index(drop=True)
     filtered["Rank"] = range(1, len(filtered) + 1)
@@ -400,14 +585,15 @@ def apply_filters(df: pd.DataFrame, filters: Dict[str, Any]) -> pd.DataFrame:
 
 def render_ranking_table_aggrid(df: pd.DataFrame):
     """Render ranking table using AG Grid."""
-    # Select key columns (reduced from 11 to 7)
+    # Select key columns (including quality)
     display_columns = [
-        "Rank", "Country", "Score", "Trend", "Change",
+        "Rank", "Country", "Score", "Quality", "Trend", "Change",
         "Flight Cost (TWD)", "Badges"
     ]
 
     display_df = df[display_columns].copy()
     display_df["Change"] = display_df["Change"].apply(lambda x: f"{x:+.1f}%")
+    display_df["Quality"] = display_df["Quality"].apply(lambda x: f"{x:.0f}%")
 
     # Build grid options
     gb = GridOptionsBuilder.from_dataframe(display_df)
@@ -416,6 +602,7 @@ def render_ranking_table_aggrid(df: pd.DataFrame):
     gb.configure_column("Rank", width=70, pinned="left")
     gb.configure_column("Country", width=150)
     gb.configure_column("Score", width=90, type=["numericColumn"])
+    gb.configure_column("Quality", width=90)
     gb.configure_column("Trend", width=70)
     gb.configure_column("Change", width=90)
     gb.configure_column("Flight Cost (TWD)", width=130, type=["numericColumn"])
@@ -439,9 +626,9 @@ def render_ranking_table_aggrid(df: pd.DataFrame):
     # Trend cell styling
     trend_cell_style = JsCode("""
     function(params) {
-        if (params.value && params.value.includes('▲')) {
+        if (params.value && params.value.includes('\u25B2')) {
             return {'color': '#4CAF50', 'fontWeight': '600'};
-        } else if (params.value && params.value.includes('▼')) {
+        } else if (params.value && params.value.includes('\u25BC')) {
             return {'color': '#F44336', 'fontWeight': '600'};
         }
         return {'color': '#9E9E9E'};
@@ -487,12 +674,13 @@ def render_ranking_table_aggrid(df: pd.DataFrame):
 def render_ranking_table_standard(df: pd.DataFrame):
     """Render ranking table using standard Streamlit (fallback)."""
     display_columns = [
-        "Rank", "Country", "Score", "Trend", "Change",
+        "Rank", "Country", "Score", "Quality", "Trend", "Change",
         "Flight Cost (TWD)", "Badges"
     ]
 
     display_df = df[display_columns].copy()
     display_df["Change"] = display_df["Change"].apply(lambda x: f"{x:+.1f}%")
+    display_df["Quality"] = display_df["Quality"].apply(lambda x: f"{x:.0f}%")
 
     # Style the dataframe
     def highlight_score(val):
@@ -515,10 +703,10 @@ def render_ranking_table_standard(df: pd.DataFrame):
                 return "color: #F44336; font-weight: 600"
         return "color: #9E9E9E"
 
-    styled_df = display_df.style.applymap(
+    styled_df = display_df.style.map(
         highlight_score,
         subset=["Score"]
-    ).applymap(
+    ).map(
         highlight_trend,
         subset=["Trend"]
     )
@@ -531,6 +719,7 @@ def render_ranking_table_standard(df: pd.DataFrame):
             "Rank": st.column_config.NumberColumn("Rank", width="small"),
             "Country": st.column_config.TextColumn("Country", width="medium"),
             "Score": st.column_config.NumberColumn("Score", format="%.1f", width="small"),
+            "Quality": st.column_config.TextColumn("Quality", width="small"),
             "Trend": st.column_config.TextColumn("Trend", width="small"),
             "Change": st.column_config.TextColumn("Change", width="small"),
             "Flight Cost (TWD)": st.column_config.NumberColumn("Flight", format="%d TWD"),
@@ -556,8 +745,14 @@ def render_score_breakdown(df: pd.DataFrame):
     for _, row in df.iterrows():
         score_data = row["score_data"]
         components = score_data.get("components", {})
+        quality_info = row.get("quality_info")
 
-        with st.expander(f"{row['Country']} - Score: {row['Score']:.1f}"):
+        # Build header with quality indicator
+        quality_badge = ""
+        if quality_info:
+            quality_badge = f" | Quality: {quality_info.overall_quality_score:.0f}%"
+
+        with st.expander(f"{row['Country']} - Score: {row['Score']:.1f}{quality_badge}"):
             col1, col2, col3 = st.columns(3)
 
             with col1:
@@ -572,6 +767,13 @@ def render_score_breakdown(df: pd.DataFrame):
                 )
                 st.markdown(card_html, unsafe_allow_html=True)
 
+                # Source indicator
+                if quality_info and quality_info.exchange_data:
+                    st.markdown(
+                        f'<div style="text-align: center; font-size: 0.75rem; color: #666;">Source: {get_source_label(quality_info.exchange_data.source)}</div>',
+                        unsafe_allow_html=True
+                    )
+
             with col2:
                 flight = components.get("flight", {})
                 card_html = render_score_breakdown_card(
@@ -583,6 +785,13 @@ def render_score_breakdown(df: pd.DataFrame):
                     card_type="flight"
                 )
                 st.markdown(card_html, unsafe_allow_html=True)
+
+                # Source indicator
+                if quality_info and quality_info.flight_data:
+                    st.markdown(
+                        f'<div style="text-align: center; font-size: 0.75rem; color: #666;">Source: {get_source_label(quality_info.flight_data.source)}</div>',
+                        unsafe_allow_html=True
+                    )
 
             with col3:
                 col_comp = components.get("col", {})
@@ -596,17 +805,45 @@ def render_score_breakdown(df: pd.DataFrame):
                 )
                 st.markdown(card_html, unsafe_allow_html=True)
 
+                # Source indicator
+                if quality_info and quality_info.col_data:
+                    st.markdown(
+                        f'<div style="text-align: center; font-size: 0.75rem; color: #666;">Source: {get_source_label(quality_info.col_data.source)}</div>',
+                        unsafe_allow_html=True
+                    )
+
+            # Historical Trend Charts
+            st.markdown("---")
+            st.markdown("**Historical Trends**")
+            trend_data = get_country_trend_data(row["country_key"], days=30)
+            if len(trend_data) >= 2:
+                fig = render_trend_charts(trend_data, row['Country'])
+                if fig:
+                    st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.caption("Insufficient historical data for trend charts")
+
             if row["badges_list"]:
                 st.markdown(
                     f'<div style="margin-top: 1rem;">{render_badges_html(row["badges_list"])}</div>',
                     unsafe_allow_html=True
                 )
 
+            # Show confidence info
+            confidence = score_data.get("confidence", 0)
+            multiplier = score_data.get("quality_multiplier", 1.0)
+            st.markdown(
+                f'''<div style="margin-top: 1rem; padding: 0.5rem; background: #f5f5f5; border-radius: 4px; font-size: 0.8rem;">
+                    <strong>Score Details:</strong> Raw: {score_data.get("raw_score", 0):.1f} | Confidence: {confidence:.0%} | Quality Multiplier: {multiplier:.3f}
+                </div>''',
+                unsafe_allow_html=True
+            )
+
 
 def export_csv(df: pd.DataFrame) -> str:
     """Generate CSV export data."""
     export_columns = [
-        "Rank", "Country", "Region", "Score", "Change",
+        "Rank", "Country", "Region", "Score", "Quality", "Change",
         "Flight Cost (TWD)", "Monthly CoL (USD)", "Badges"
     ]
     return df[export_columns].to_csv(index=False)
@@ -668,6 +905,17 @@ def main():
 
     # Footer
     st.divider()
+
+    # Data quality summary
+    quality_stats = get_data_quality_stats()
+    if quality_stats:
+        st.caption(
+            f"Data Quality: Avg {quality_stats.get('avg_quality', 0):.0f}% | "
+            f"Live: {quality_stats.get('source_distribution', {}).get('live_api', 0)} | "
+            f"Cached: {quality_stats.get('source_distribution', {}).get('cache', 0)} | "
+            f"Baseline: {quality_stats.get('source_distribution', {}).get('baseline', 0)}"
+        )
+
     st.caption(
         "Data sources: SerpApi Google Flights (flights), ExchangeRate-API (currency), "
         "Embedded CoL data. Scores update based on API availability and cache TTL."

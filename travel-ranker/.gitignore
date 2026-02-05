@@ -1,0 +1,29 @@
+# Environment and secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Testing
+.pytest_cache/
+
+# Logs
+logs/
+*.log
+
+# Database (user data)
+data/travel_ranker.db
+
+# Cache files
+data/cache/*.json
