@@ -12,9 +12,9 @@
       "region": "East Asia",
       "capital_city": "Tokyo",
       "baseline": {
-        "exchange_rate": 0.22,
+        "exchange_rate": 4.65,
         "flight_cost_twd": 8500,
-        "monthly_col_usd": 1800
+        "monthly_col_usd": 1850
       }
     },
     "south_korea": {
@@ -24,9 +24,9 @@
       "region": "East Asia",
       "capital_city": "Seoul",
       "baseline": {
-        "exchange_rate": 0.024,
+        "exchange_rate": 42.2,
         "flight_cost_twd": 7500,
-        "monthly_col_usd": 1600
+        "monthly_col_usd": 1650
       }
     },
     "hong_kong": {
@@ -36,9 +36,9 @@
       "region": "East Asia",
       "capital_city": "Hong Kong",
       "baseline": {
-        "exchange_rate": 4.1,
+        "exchange_rate": 0.247,
         "flight_cost_twd": 5500,
-        "monthly_col_usd": 2200
+        "monthly_col_usd": 2300
       }
     },
     "china": {
@@ -48,9 +48,9 @@
       "region": "East Asia",
       "capital_city": "Shanghai",
       "baseline": {
-        "exchange_rate": 4.4,
+        "exchange_rate": 0.221,
         "flight_cost_twd": 6000,
-        "monthly_col_usd": 1100
+        "monthly_col_usd": 1150
       }
     },
     "thailand": {
@@ -60,9 +60,9 @@
       "region": "Southeast Asia",
       "capital_city": "Bangkok",
       "baseline": {
-        "exchange_rate": 0.92,
+        "exchange_rate": 1.10,
         "flight_cost_twd": 6500,
-        "monthly_col_usd": 1000
+        "monthly_col_usd": 1050
       }
     },
     "vietnam": {
@@ -72,9 +72,9 @@
       "region": "Southeast Asia",
       "capital_city": "Ho Chi Minh City",
       "baseline": {
-        "exchange_rate": 0.00128,
+        "exchange_rate": 787.4,
         "flight_cost_twd": 5500,
-        "monthly_col_usd": 800
+        "monthly_col_usd": 850
       }
     },
     "malaysia": {
@@ -84,9 +84,9 @@
       "region": "Southeast Asia",
       "capital_city": "Kuala Lumpur",
       "baseline": {
-        "exchange_rate": 7.2,
+        "exchange_rate": 0.140,
         "flight_cost_twd": 6000,
-        "monthly_col_usd": 900
+        "monthly_col_usd": 950
       }
     },
     "indonesia": {
@@ -96,9 +96,9 @@
       "region": "Southeast Asia",
       "capital_city": "Jakarta",
       "baseline": {
-        "exchange_rate": 0.002,
+        "exchange_rate": 505.0,
         "flight_cost_twd": 7000,
-        "monthly_col_usd": 750
+        "monthly_col_usd": 800
       }
     },
     "philippines": {
@@ -108,9 +108,9 @@
       "region": "Southeast Asia",
       "capital_city": "Manila",
       "baseline": {
-        "exchange_rate": 0.57,
-        "flight_cost_twd": 5000,
-        "monthly_col_usd": 850
+        "exchange_rate": 1.77,
+        "flight_cost_twd": 5200,
+        "monthly_col_usd": 900
       }
     },
     "singapore": {
@@ -120,9 +120,9 @@
       "region": "Southeast Asia",
       "capital_city": "Singapore",
       "baseline": {
-        "exchange_rate": 23.8,
+        "exchange_rate": 0.0426,
         "flight_cost_twd": 7500,
-        "monthly_col_usd": 2800
+        "monthly_col_usd": 2900
       }
     },
     "india": {
@@ -132,9 +132,9 @@
       "region": "South Asia",
       "capital_city": "New Delhi",
       "baseline": {
-        "exchange_rate": 0.38,
-        "flight_cost_twd": 12000,
-        "monthly_col_usd": 600
+        "exchange_rate": 2.63,
+        "flight_cost_twd": 12500,
+        "monthly_col_usd": 650
       }
     },
     "uk": {
@@ -144,9 +144,9 @@
       "region": "Europe",
       "capital_city": "London",
       "baseline": {
-        "exchange_rate": 40.5,
+        "exchange_rate": 0.0249,
         "flight_cost_twd": 25000,
-        "monthly_col_usd": 2800
+        "monthly_col_usd": 2850
       }
     },
     "germany": {
@@ -156,9 +156,9 @@
       "region": "Europe",
       "capital_city": "Frankfurt",
       "baseline": {
-        "exchange_rate": 34.5,
+        "exchange_rate": 0.0292,
         "flight_cost_twd": 22000,
-        "monthly_col_usd": 2200
+        "monthly_col_usd": 2250
       }
     },
     "france": {
@@ -168,9 +168,9 @@
       "region": "Europe",
       "capital_city": "Paris",
       "baseline": {
-        "exchange_rate": 34.5,
+        "exchange_rate": 0.0292,
         "flight_cost_twd": 23000,
-        "monthly_col_usd": 2400
+        "monthly_col_usd": 2450
       }
     },
     "spain": {
@@ -180,9 +180,9 @@
       "region": "Europe",
       "capital_city": "Madrid",
       "baseline": {
-        "exchange_rate": 34.5,
+        "exchange_rate": 0.0292,
         "flight_cost_twd": 24000,
-        "monthly_col_usd": 1800
+        "monthly_col_usd": 1850
       }
     },
     "portugal": {
@@ -192,9 +192,9 @@
       "region": "Europe",
       "capital_city": "Lisbon",
       "baseline": {
-        "exchange_rate": 34.5,
+        "exchange_rate": 0.0292,
         "flight_cost_twd": 25000,
-        "monthly_col_usd": 1600
+        "monthly_col_usd": 1700
       }
     },
     "netherlands": {
@@ -204,9 +204,9 @@
       "region": "Europe",
       "capital_city": "Amsterdam",
       "baseline": {
-        "exchange_rate": 34.5,
+        "exchange_rate": 0.0292,
         "flight_cost_twd": 22500,
-        "monthly_col_usd": 2500
+        "monthly_col_usd": 2550
       }
     },
     "usa": {
@@ -216,9 +216,9 @@
       "region": "Americas",
       "capital_city": "Los Angeles",
       "baseline": {
-        "exchange_rate": 32.0,
+        "exchange_rate": 0.0315,
         "flight_cost_twd": 28000,
-        "monthly_col_usd": 3000
+        "monthly_col_usd": 3100
       }
     },
     "mexico": {
@@ -228,9 +228,9 @@
       "region": "Americas",
       "capital_city": "Mexico City",
       "baseline": {
-        "exchange_rate": 1.85,
+        "exchange_rate": 0.549,
         "flight_cost_twd": 30000,
-        "monthly_col_usd": 1100
+        "monthly_col_usd": 1150
       }
     },
     "colombia": {
@@ -240,9 +240,9 @@
       "region": "Americas",
       "capital_city": "Bogota",
       "baseline": {
-        "exchange_rate": 0.008,
+        "exchange_rate": 128.2,
         "flight_cost_twd": 35000,
-        "monthly_col_usd": 900
+        "monthly_col_usd": 950
       }
     },
     "argentina": {
@@ -252,9 +252,9 @@
       "region": "Americas",
       "capital_city": "Buenos Aires",
       "baseline": {
-        "exchange_rate": 0.037,
+        "exchange_rate": 28.6,
         "flight_cost_twd": 38000,
-        "monthly_col_usd": 800
+        "monthly_col_usd": 850
       }
     },
     "uae": {
@@ -264,9 +264,9 @@
       "region": "Middle East",
       "capital_city": "Dubai",
       "baseline": {
-        "exchange_rate": 8.7,
-        "flight_cost_twd": 15000,
-        "monthly_col_usd": 2500
+        "exchange_rate": 0.116,
+        "flight_cost_twd": 15500,
+        "monthly_col_usd": 2600
       }
     },
     "turkey": {
@@ -276,9 +276,9 @@
       "region": "Middle East",
       "capital_city": "Istanbul",
       "baseline": {
-        "exchange_rate": 0.98,
+        "exchange_rate": 1.05,
         "flight_cost_twd": 18000,
-        "monthly_col_usd": 900
+        "monthly_col_usd": 950
       }
     },
     "australia": {
@@ -288,9 +288,9 @@
       "region": "Oceania",
       "capital_city": "Sydney",
       "baseline": {
-        "exchange_rate": 21.0,
-        "flight_cost_twd": 18000,
-        "monthly_col_usd": 2600
+        "exchange_rate": 0.0481,
+        "flight_cost_twd": 18500,
+        "monthly_col_usd": 2700
       }
     },
     "new_zealand": {
@@ -300,9 +300,9 @@
       "region": "Oceania",
       "capital_city": "Auckland",
       "baseline": {
-        "exchange_rate": 19.5,
-        "flight_cost_twd": 20000,
-        "monthly_col_usd": 2200
+        "exchange_rate": 0.0521,
+        "flight_cost_twd": 20500,
+        "monthly_col_usd": 2300
       }
     }
   }
