@@ -207,14 +207,21 @@ def get_current_data(countries: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
                 rate_source = DataSource.BASELINE
 
         # Create provenance for exchange rate
+        # Quality score based on source: LIVE_API=95, CACHE=85, STALE_CACHE=60, BASELINE=40
+        exchange_quality = {
+            DataSource.LIVE_API: 95,
+            DataSource.CACHE: 85,
+            DataSource.STALE_CACHE: 60,
+            DataSource.BASELINE: 40,
+            DataSource.MOCK: 30,
+        }.get(rate_source, 40)
+
         quality.exchange_data = DataWithProvenance(
             value=current_rate,
             source=rate_source,
             fetched_at=datetime.now(),
             field_name="exchange_rate",
-            quality_score=90 if rate_source == DataSource.LIVE_API else (
-                80 if rate_source == DataSource.CACHE else 40
-            )
+            quality_score=exchange_quality
         )
 
         # Get flight cost
@@ -245,25 +252,36 @@ def get_current_data(countries: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
                 flight_source = DataSource.BASELINE
 
         # Create provenance for flight
+        # Quality score based on source: LIVE_API=95, CACHE=85, STALE_CACHE=60, BASELINE=40
+        flight_quality = {
+            DataSource.LIVE_API: 95,
+            DataSource.CACHE: 85,
+            DataSource.STALE_CACHE: 60,
+            DataSource.BASELINE: 40,
+            DataSource.MOCK: 30,
+        }.get(flight_source, 40)
+
         quality.flight_data = DataWithProvenance(
             value=current_flight,
             source=flight_source,
             fetched_at=datetime.now(),
             field_name="flight_cost",
-            quality_score=90 if flight_source == DataSource.LIVE_API else (
-                80 if flight_source == DataSource.CACHE else 40
-            )
+            quality_score=flight_quality
         )
 
         # Get cost of living (from embedded data or baseline)
         current_col = get_col_for_country(country_name)
         col_source = DataSource.CACHE if current_col else DataSource.BASELINE
+        col_quality = 75  # Default for embedded data
 
         if current_col is None:
             if "col" in baseline_data:
                 current_col = baseline_data["col"].value
+                # Use confidence from baselines_v2 if available (varies per country)
+                col_quality = baseline_data["col"].quality_score if hasattr(baseline_data["col"], 'quality_score') else 45
             else:
                 current_col = baseline.get("monthly_col_usd", 1500)
+                col_quality = 40
             col_source = DataSource.BASELINE
 
         # Create provenance for CoL
@@ -272,7 +290,7 @@ def get_current_data(countries: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
             source=col_source,
             fetched_at=datetime.now(),
             field_name="col",
-            quality_score=70 if col_source == DataSource.CACHE else 40
+            quality_score=col_quality
         )
 
         # Recalculate overall quality

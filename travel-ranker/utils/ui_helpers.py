@@ -203,25 +203,20 @@ def render_top_destination_card(
     badges_html = render_badges_html(badges) if badges else ""
     trend_html = get_trend_indicator_html(change)
 
-    return f'''
-        <div class="top-card {card_class}">
-            <div class="rank-badge {badge_class}">{rank}</div>
-            <div class="card-country-name">{country}</div>
-            <div class="card-score" style="color: {score_color}">{score:.1f}</div>
-            <div class="card-score-label">Overall Score</div>
-            <div class="card-detail">
-                <span class="card-detail-label">Trend</span>
-                {trend_html}
-            </div>
-            <div class="card-detail">
-                <span class="card-detail-label">Flight</span>
-                <span class="card-detail-value">{flight_cost:,} TWD</span>
-            </div>
-            <div style="margin-top: 0.75rem;">
-                {badges_html}
-            </div>
-        </div>
-    '''
+    # Build badges section only if there are badges
+    badges_section = f'<div style="margin-top: 0.75rem;">{badges_html}</div>' if badges_html else ""
+
+    return (
+        f'<div class="top-card {card_class}">'
+        f'<div class="rank-badge {badge_class}">{rank}</div>'
+        f'<div class="card-country-name">{country}</div>'
+        f'<div class="card-score" style="color: {score_color}">{score:.1f}</div>'
+        f'<div class="card-score-label">OVERALL SCORE</div>'
+        f'<div class="card-detail"><span class="card-detail-label">Trend</span>{trend_html}</div>'
+        f'<div class="card-detail"><span class="card-detail-label">Flight</span><span class="card-detail-value">{flight_cost:,} TWD</span></div>'
+        f'{badges_section}'
+        f'</div>'
+    )
 
 
 def render_metric_card(label: str, value: str, delta: Optional[str] = None, delta_positive: bool = True) -> str:
