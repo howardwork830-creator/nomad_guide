@@ -24,30 +24,63 @@ VALIDATION_RULES = {
     "score": {"min": 0, "max": 100, "type": float, "null_ok": False},
 }
 
-# Known exchange rate ranges (TWD to foreign currency)
-# These are approximate ranges for sanity checking
+# Known exchange rate ranges (1 TWD = X foreign currency)
+# Example: USD 0.0315 means 1 TWD buys 0.0315 USD
 EXCHANGE_RATE_RANGES = {
-    "JPY": (0.15, 0.35),      # Japan Yen
-    "KRW": (0.015, 0.040),    # Korean Won
-    "HKD": (3.5, 5.0),        # Hong Kong Dollar
-    "CNY": (3.5, 5.5),        # Chinese Yuan
-    "THB": (0.7, 1.2),        # Thai Baht
-    "VND": (0.001, 0.002),    # Vietnamese Dong
-    "MYR": (6.0, 9.0),        # Malaysian Ringgit
-    "IDR": (0.0015, 0.003),   # Indonesian Rupiah
-    "PHP": (0.4, 0.8),        # Philippine Peso
-    "SGD": (20.0, 28.0),      # Singapore Dollar
-    "INR": (0.3, 0.5),        # Indian Rupee
-    "GBP": (35.0, 50.0),      # British Pound
-    "EUR": (30.0, 42.0),      # Euro
-    "USD": (28.0, 36.0),      # US Dollar
-    "MXN": (1.5, 2.5),        # Mexican Peso
-    "COP": (0.005, 0.012),    # Colombian Peso
-    "ARS": (0.01, 0.10),      # Argentine Peso (high volatility)
-    "AED": (7.5, 10.0),       # UAE Dirham
-    "TRY": (0.5, 2.0),        # Turkish Lira (high volatility)
-    "AUD": (18.0, 26.0),      # Australian Dollar
-    "NZD": (16.0, 24.0),      # New Zealand Dollar
+    # East Asia
+    "JPY": (3.5, 6.0),        # Japan Yen
+    "KRW": (35.0, 50.0),      # Korean Won
+    "HKD": (0.20, 0.30),      # Hong Kong Dollar
+    "CNY": (0.18, 0.28),      # Chinese Yuan
+    # Southeast Asia
+    "THB": (0.85, 1.25),      # Thai Baht
+    "VND": (700.0, 900.0),    # Vietnamese Dong
+    "MYR": (0.11, 0.17),      # Malaysian Ringgit
+    "IDR": (400.0, 600.0),    # Indonesian Rupiah
+    "PHP": (1.5, 2.2),        # Philippine Peso
+    "SGD": (0.035, 0.050),    # Singapore Dollar
+    "KHR": (100.0, 160.0),    # Cambodian Riel
+    "LAK": (550.0, 800.0),    # Lao Kip (high volatility)
+    # South Asia
+    "INR": (2.2, 3.2),        # Indian Rupee
+    "LKR": (8.0, 12.0),       # Sri Lankan Rupee
+    "NPR": (3.5, 5.0),        # Nepalese Rupee (pegged to INR)
+    # Europe - Major
+    "GBP": (0.020, 0.030),    # British Pound
+    "EUR": (0.024, 0.035),    # Euro (used by Germany, France, Spain, Portugal, Netherlands, Estonia, Croatia, Greece)
+    "CHF": (0.024, 0.032),    # Swiss Franc
+    # Europe - Central/Eastern
+    "CZK": (0.60, 0.85),      # Czech Koruna
+    "PLN": (0.10, 0.15),      # Polish Zloty
+    "HUF": (9.0, 14.0),       # Hungarian Forint
+    "RON": (0.13, 0.17),      # Romanian Leu
+    "BGN": (0.050, 0.065),    # Bulgarian Lev (pegged to EUR)
+    "ALL": (2.5, 3.5),        # Albanian Lek
+    "GEL": (0.070, 0.100),    # Georgian Lari
+    # Americas
+    "USD": (0.028, 0.038),    # US Dollar (also used by Panama)
+    "CAD": (0.038, 0.052),    # Canadian Dollar
+    "MXN": (0.45, 0.65),      # Mexican Peso
+    "COP": (100.0, 150.0),    # Colombian Peso
+    "ARS": (15.0, 60.0),      # Argentine Peso (high volatility)
+    "BRL": (0.13, 0.19),      # Brazilian Real
+    "PEN": (0.10, 0.14),      # Peruvian Sol
+    "CRC": (13.0, 20.0),      # Costa Rican Colon
+    "CLP": (24.0, 36.0),      # Chilean Peso
+    # Middle East
+    "AED": (0.10, 0.14),      # UAE Dirham (pegged to USD)
+    "TRY": (0.8, 1.8),        # Turkish Lira (high volatility)
+    "ILS": (0.10, 0.14),      # Israeli Shekel
+    "EGP": (1.2, 2.0),        # Egyptian Pound (volatile)
+    # Africa
+    "MAD": (0.28, 0.38),      # Moroccan Dirham
+    "ZAR": (0.45, 0.70),      # South African Rand
+    "KES": (3.5, 4.8),        # Kenyan Shilling
+    # Oceania
+    "AUD": (0.040, 0.060),    # Australian Dollar
+    "NZD": (0.045, 0.065),    # New Zealand Dollar
+    # Nordic
+    "ISK": (3.8, 5.0),        # Icelandic Krona
 }
 
 
@@ -355,11 +388,15 @@ def validate_col_data(
     # Country-specific reasonableness checks
     high_col_countries = {
         "Singapore", "United Kingdom", "United States", "Australia",
-        "Hong Kong", "Netherlands", "France", "Germany"
+        "Hong Kong", "Netherlands", "France", "Germany", "Switzerland",
+        "Iceland", "Israel", "Canada", "New Zealand"
     }
     low_col_countries = {
         "Vietnam", "Indonesia", "India", "Philippines",
-        "Thailand", "Colombia", "Argentina", "Mexico"
+        "Thailand", "Colombia", "Argentina", "Mexico",
+        "Georgia", "Albania", "Bulgaria", "Romania",
+        "Cambodia", "Laos", "Nepal", "Sri Lanka",
+        "Egypt", "Morocco", "Kenya", "Peru"
     }
 
     if country in high_col_countries:

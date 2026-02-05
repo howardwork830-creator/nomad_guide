@@ -1,0 +1,485 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "generated_at": "2026-02-05",
+    "passport_country": "Taiwan (Republic of China)",
+    "sources": ["Ministry of Foreign Affairs Taiwan", "IATA Timatic", "Embassy websites"],
+    "scoring": {
+      "visa_free": 100,
+      "visa_on_arrival": 80,
+      "evisa": 60,
+      "visa_required": 20
+    },
+    "notes": "Visa requirements for Taiwan (ROC) passport holders. Requirements may change; verify before travel."
+  },
+  "visa_requirements": {
+    "japan": {
+      "country_name": "Japan",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry, extendable",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "south_korea": {
+      "country_name": "South Korea",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free for tourism",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "hong_kong": {
+      "country_name": "Hong Kong",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "china": {
+      "country_name": "China",
+      "visa_type": "visa_required",
+      "visa_score": 20,
+      "max_stay_days": null,
+      "notes": "Visa required, Taiwan Compatriot Entry Permit (台胞證)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "thailand": {
+      "country_name": "Thailand",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 30,
+      "notes": "30-day visa-free, extendable to 60 days",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "vietnam": {
+      "country_name": "Vietnam",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "e-Visa available, single entry 90 days",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "malaysia": {
+      "country_name": "Malaysia",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 30,
+      "notes": "30-day visa-free entry",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "indonesia": {
+      "country_name": "Indonesia",
+      "visa_type": "visa_on_arrival",
+      "visa_score": 80,
+      "max_stay_days": 30,
+      "notes": "30-day VOA, extendable once",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "philippines": {
+      "country_name": "Philippines",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 30,
+      "notes": "30-day visa-free, extendable up to 3 years",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "singapore": {
+      "country_name": "Singapore",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 30,
+      "notes": "30-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "india": {
+      "country_name": "India",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "e-Tourist visa required, up to 90 days",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "uk": {
+      "country_name": "United Kingdom",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 180,
+      "notes": "6-month visa-free for tourism",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "germany": {
+      "country_name": "Germany",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "france": {
+      "country_name": "France",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "spain": {
+      "country_name": "Spain",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "portugal": {
+      "country_name": "Portugal",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "netherlands": {
+      "country_name": "Netherlands",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "usa": {
+      "country_name": "United States",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "ESTA required (Electronic System for Travel Authorization)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "mexico": {
+      "country_name": "Mexico",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 180,
+      "notes": "180-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "colombia": {
+      "country_name": "Colombia",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free, extendable to 180 days",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "argentina": {
+      "country_name": "Argentina",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "uae": {
+      "country_name": "United Arab Emirates",
+      "visa_type": "visa_on_arrival",
+      "visa_score": 80,
+      "max_stay_days": 30,
+      "notes": "30-day visa on arrival, extendable",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "turkey": {
+      "country_name": "Turkey",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 30,
+      "notes": "e-Visa required, 30 days",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "australia": {
+      "country_name": "Australia",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "ETA required (Electronic Travel Authority)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "new_zealand": {
+      "country_name": "New Zealand",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "NZeTA required, 90-day visa-free with ETA",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "georgia": {
+      "country_name": "Georgia",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 365,
+      "notes": "1-year visa-free stay! Top nomad destination",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "estonia": {
+      "country_name": "Estonia",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "croatia": {
+      "country_name": "Croatia",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen, joined 2023)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "czech_republic": {
+      "country_name": "Czech Republic",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "poland": {
+      "country_name": "Poland",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "hungary": {
+      "country_name": "Hungary",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "greece": {
+      "country_name": "Greece",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "albania": {
+      "country_name": "Albania",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free (non-Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "romania": {
+      "country_name": "Romania",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free (EU but non-Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "bulgaria": {
+      "country_name": "Bulgaria",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free (EU but non-Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "brazil": {
+      "country_name": "Brazil",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "e-Visa required, 90 days",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "peru": {
+      "country_name": "Peru",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "costa_rica": {
+      "country_name": "Costa Rica",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "chile": {
+      "country_name": "Chile",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "panama": {
+      "country_name": "Panama",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 180,
+      "notes": "180-day visa-free entry",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "cambodia": {
+      "country_name": "Cambodia",
+      "visa_type": "visa_on_arrival",
+      "visa_score": 80,
+      "max_stay_days": 30,
+      "notes": "30-day tourist visa on arrival, e-Visa also available",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "laos": {
+      "country_name": "Laos",
+      "visa_type": "visa_on_arrival",
+      "visa_score": 80,
+      "max_stay_days": 30,
+      "notes": "30-day visa on arrival",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "sri_lanka": {
+      "country_name": "Sri Lanka",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 30,
+      "notes": "ETA required (Electronic Travel Authorization)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "nepal": {
+      "country_name": "Nepal",
+      "visa_type": "visa_on_arrival",
+      "visa_score": 80,
+      "max_stay_days": 90,
+      "notes": "90-day visa on arrival (15/30/90 day options)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "morocco": {
+      "country_name": "Morocco",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "south_africa": {
+      "country_name": "South Africa",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "egypt": {
+      "country_name": "Egypt",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 30,
+      "notes": "e-Visa required, 30 days",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "kenya": {
+      "country_name": "Kenya",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 90,
+      "notes": "e-Visa required through eTA system",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "israel": {
+      "country_name": "Israel",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90-day visa-free entry",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "iceland": {
+      "country_name": "Iceland",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": true,
+      "last_verified": "2026-01-15"
+    },
+    "canada": {
+      "country_name": "Canada",
+      "visa_type": "evisa",
+      "visa_score": 60,
+      "max_stay_days": 180,
+      "notes": "eTA required, up to 6 months",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    },
+    "switzerland": {
+      "country_name": "Switzerland",
+      "visa_type": "visa_free",
+      "visa_score": 100,
+      "max_stay_days": 90,
+      "notes": "90 days in 180-day period (Schengen)",
+      "digital_nomad_visa": false,
+      "last_verified": "2026-01-15"
+    }
+  }
+}

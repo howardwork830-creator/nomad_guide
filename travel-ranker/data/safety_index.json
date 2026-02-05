@@ -1,0 +1,479 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "generated_at": "2026-02-05",
+    "sources": ["Global Peace Index 2025", "Numbeo Safety Index 2025"],
+    "methodology": "Composite score combining GPI rank (inverted, normalized to 0-100) and Numbeo Safety Index (0-100). Higher score = safer destination.",
+    "notes": "GPI measures absence of violence/fear, Numbeo measures perceived safety by residents/visitors."
+  },
+  "safety_scores": {
+    "japan": {
+      "country_name": "Japan",
+      "safety_score": 88,
+      "gpi_rank": 9,
+      "gpi_score": 1.336,
+      "numbeo_safety_index": 78.8,
+      "crime_index": 21.2,
+      "notes": "Very safe, low crime rates, excellent public order"
+    },
+    "south_korea": {
+      "country_name": "South Korea",
+      "safety_score": 82,
+      "gpi_rank": 43,
+      "gpi_score": 1.804,
+      "numbeo_safety_index": 72.5,
+      "crime_index": 27.5,
+      "notes": "Generally safe, some concerns about regional tensions"
+    },
+    "hong_kong": {
+      "country_name": "Hong Kong",
+      "safety_score": 80,
+      "gpi_rank": null,
+      "gpi_score": null,
+      "numbeo_safety_index": 71.2,
+      "crime_index": 28.8,
+      "notes": "Safe for visitors, low violent crime"
+    },
+    "china": {
+      "country_name": "China",
+      "safety_score": 72,
+      "gpi_rank": 80,
+      "gpi_score": 1.984,
+      "numbeo_safety_index": 67.8,
+      "crime_index": 32.2,
+      "notes": "Low street crime, strict law enforcement"
+    },
+    "thailand": {
+      "country_name": "Thailand",
+      "safety_score": 65,
+      "gpi_rank": 92,
+      "gpi_score": 2.065,
+      "numbeo_safety_index": 58.4,
+      "crime_index": 41.6,
+      "notes": "Generally safe for tourists, be aware of scams"
+    },
+    "vietnam": {
+      "country_name": "Vietnam",
+      "safety_score": 68,
+      "gpi_rank": 41,
+      "gpi_score": 1.788,
+      "numbeo_safety_index": 59.2,
+      "crime_index": 40.8,
+      "notes": "Safe, low violent crime, watch for petty theft"
+    },
+    "malaysia": {
+      "country_name": "Malaysia",
+      "safety_score": 70,
+      "gpi_rank": 19,
+      "gpi_score": 1.489,
+      "numbeo_safety_index": 56.8,
+      "crime_index": 43.2,
+      "notes": "Moderate safety, petty crime in urban areas"
+    },
+    "indonesia": {
+      "country_name": "Indonesia",
+      "safety_score": 62,
+      "gpi_rank": 53,
+      "gpi_score": 1.854,
+      "numbeo_safety_index": 54.2,
+      "crime_index": 45.8,
+      "notes": "Variable by region, Bali generally safe"
+    },
+    "philippines": {
+      "country_name": "Philippines",
+      "safety_score": 55,
+      "gpi_rank": 115,
+      "gpi_score": 2.289,
+      "numbeo_safety_index": 46.5,
+      "crime_index": 53.5,
+      "notes": "Moderate concerns, varies significantly by area"
+    },
+    "singapore": {
+      "country_name": "Singapore",
+      "safety_score": 95,
+      "gpi_rank": 5,
+      "gpi_score": 1.326,
+      "numbeo_safety_index": 86.4,
+      "crime_index": 13.6,
+      "notes": "One of the safest cities in the world"
+    },
+    "india": {
+      "country_name": "India",
+      "safety_score": 52,
+      "gpi_rank": 126,
+      "gpi_score": 2.407,
+      "numbeo_safety_index": 48.8,
+      "crime_index": 51.2,
+      "notes": "Variable by region, exercise caution in some areas"
+    },
+    "uk": {
+      "country_name": "United Kingdom",
+      "safety_score": 78,
+      "gpi_rank": 37,
+      "gpi_score": 1.771,
+      "numbeo_safety_index": 54.8,
+      "crime_index": 45.2,
+      "notes": "Generally safe, urban crime concerns"
+    },
+    "germany": {
+      "country_name": "Germany",
+      "safety_score": 82,
+      "gpi_rank": 15,
+      "gpi_score": 1.421,
+      "numbeo_safety_index": 63.2,
+      "crime_index": 36.8,
+      "notes": "Very safe, excellent public infrastructure"
+    },
+    "france": {
+      "country_name": "France",
+      "safety_score": 72,
+      "gpi_rank": 56,
+      "gpi_score": 1.879,
+      "numbeo_safety_index": 49.8,
+      "crime_index": 50.2,
+      "notes": "Generally safe, pickpocketing in tourist areas"
+    },
+    "spain": {
+      "country_name": "Spain",
+      "safety_score": 75,
+      "gpi_rank": 30,
+      "gpi_score": 1.647,
+      "numbeo_safety_index": 58.5,
+      "crime_index": 41.5,
+      "notes": "Safe overall, petty theft in major cities"
+    },
+    "portugal": {
+      "country_name": "Portugal",
+      "safety_score": 85,
+      "gpi_rank": 6,
+      "gpi_score": 1.333,
+      "numbeo_safety_index": 70.2,
+      "crime_index": 29.8,
+      "notes": "Very safe, one of Europe's safest countries"
+    },
+    "netherlands": {
+      "country_name": "Netherlands",
+      "safety_score": 80,
+      "gpi_rank": 17,
+      "gpi_score": 1.456,
+      "numbeo_safety_index": 62.4,
+      "crime_index": 37.6,
+      "notes": "Generally safe, bike theft common"
+    },
+    "usa": {
+      "country_name": "United States",
+      "safety_score": 58,
+      "gpi_rank": 132,
+      "gpi_score": 2.478,
+      "numbeo_safety_index": 51.2,
+      "crime_index": 48.8,
+      "notes": "Variable by city/neighborhood, gun violence concerns"
+    },
+    "mexico": {
+      "country_name": "Mexico",
+      "safety_score": 48,
+      "gpi_rank": 136,
+      "gpi_score": 2.587,
+      "numbeo_safety_index": 42.8,
+      "crime_index": 57.2,
+      "notes": "Variable by region, tourist areas generally safer"
+    },
+    "colombia": {
+      "country_name": "Colombia",
+      "safety_score": 52,
+      "gpi_rank": 144,
+      "gpi_score": 2.691,
+      "numbeo_safety_index": 48.5,
+      "crime_index": 51.5,
+      "notes": "Improving, major cities safer than before"
+    },
+    "argentina": {
+      "country_name": "Argentina",
+      "safety_score": 58,
+      "gpi_rank": 66,
+      "gpi_score": 1.911,
+      "numbeo_safety_index": 42.2,
+      "crime_index": 57.8,
+      "notes": "Moderate safety, economic concerns"
+    },
+    "uae": {
+      "country_name": "United Arab Emirates",
+      "safety_score": 90,
+      "gpi_rank": 47,
+      "gpi_score": 1.831,
+      "numbeo_safety_index": 84.5,
+      "crime_index": 15.5,
+      "notes": "Very safe, strict laws, low crime"
+    },
+    "turkey": {
+      "country_name": "Turkey",
+      "safety_score": 55,
+      "gpi_rank": 147,
+      "gpi_score": 2.741,
+      "numbeo_safety_index": 53.8,
+      "crime_index": 46.2,
+      "notes": "Tourist areas generally safe, regional concerns"
+    },
+    "australia": {
+      "country_name": "Australia",
+      "safety_score": 82,
+      "gpi_rank": 22,
+      "gpi_score": 1.522,
+      "numbeo_safety_index": 60.5,
+      "crime_index": 39.5,
+      "notes": "Very safe, be aware of wildlife hazards"
+    },
+    "new_zealand": {
+      "country_name": "New Zealand",
+      "safety_score": 90,
+      "gpi_rank": 4,
+      "gpi_score": 1.313,
+      "numbeo_safety_index": 69.8,
+      "crime_index": 30.2,
+      "notes": "Extremely safe, peaceful society"
+    },
+    "georgia": {
+      "country_name": "Georgia",
+      "safety_score": 72,
+      "gpi_rank": 85,
+      "gpi_score": 2.021,
+      "numbeo_safety_index": 71.5,
+      "crime_index": 28.5,
+      "notes": "Safe for tourists, low crime, welcoming culture"
+    },
+    "estonia": {
+      "country_name": "Estonia",
+      "safety_score": 85,
+      "gpi_rank": 24,
+      "gpi_score": 1.568,
+      "numbeo_safety_index": 73.2,
+      "crime_index": 26.8,
+      "notes": "Very safe, low crime rates, digital society"
+    },
+    "croatia": {
+      "country_name": "Croatia",
+      "safety_score": 82,
+      "gpi_rank": 14,
+      "gpi_score": 1.416,
+      "numbeo_safety_index": 71.8,
+      "crime_index": 28.2,
+      "notes": "Very safe for tourists, especially coastal areas"
+    },
+    "czech_republic": {
+      "country_name": "Czech Republic",
+      "safety_score": 80,
+      "gpi_rank": 12,
+      "gpi_score": 1.379,
+      "numbeo_safety_index": 68.5,
+      "crime_index": 31.5,
+      "notes": "Very safe, petty crime in tourist areas"
+    },
+    "poland": {
+      "country_name": "Poland",
+      "safety_score": 78,
+      "gpi_rank": 26,
+      "gpi_score": 1.591,
+      "numbeo_safety_index": 69.2,
+      "crime_index": 30.8,
+      "notes": "Generally safe, low violent crime"
+    },
+    "hungary": {
+      "country_name": "Hungary",
+      "safety_score": 75,
+      "gpi_rank": 20,
+      "gpi_score": 1.494,
+      "numbeo_safety_index": 64.5,
+      "crime_index": 35.5,
+      "notes": "Safe overall, pickpocketing in Budapest"
+    },
+    "greece": {
+      "country_name": "Greece",
+      "safety_score": 76,
+      "gpi_rank": 59,
+      "gpi_score": 1.894,
+      "numbeo_safety_index": 58.8,
+      "crime_index": 41.2,
+      "notes": "Safe for tourists, some petty crime in Athens"
+    },
+    "albania": {
+      "country_name": "Albania",
+      "safety_score": 68,
+      "gpi_rank": 45,
+      "gpi_score": 1.815,
+      "numbeo_safety_index": 62.5,
+      "crime_index": 37.5,
+      "notes": "Safe for tourists, improving infrastructure"
+    },
+    "romania": {
+      "country_name": "Romania",
+      "safety_score": 74,
+      "gpi_rank": 27,
+      "gpi_score": 1.615,
+      "numbeo_safety_index": 62.8,
+      "crime_index": 37.2,
+      "notes": "Generally safe, petty crime in cities"
+    },
+    "bulgaria": {
+      "country_name": "Bulgaria",
+      "safety_score": 72,
+      "gpi_rank": 29,
+      "gpi_score": 1.639,
+      "numbeo_safety_index": 60.5,
+      "crime_index": 39.5,
+      "notes": "Safe overall, some petty crime"
+    },
+    "brazil": {
+      "country_name": "Brazil",
+      "safety_score": 42,
+      "gpi_rank": 131,
+      "gpi_score": 2.467,
+      "numbeo_safety_index": 32.8,
+      "crime_index": 67.2,
+      "notes": "Variable by area, avoid certain neighborhoods"
+    },
+    "peru": {
+      "country_name": "Peru",
+      "safety_score": 55,
+      "gpi_rank": 99,
+      "gpi_score": 2.128,
+      "numbeo_safety_index": 48.2,
+      "crime_index": 51.8,
+      "notes": "Tourist areas generally safe, petty crime"
+    },
+    "costa_rica": {
+      "country_name": "Costa Rica",
+      "safety_score": 65,
+      "gpi_rank": 39,
+      "gpi_score": 1.783,
+      "numbeo_safety_index": 52.5,
+      "crime_index": 47.5,
+      "notes": "Safe for tourists, petty theft concerns"
+    },
+    "chile": {
+      "country_name": "Chile",
+      "safety_score": 68,
+      "gpi_rank": 58,
+      "gpi_score": 1.891,
+      "numbeo_safety_index": 51.2,
+      "crime_index": 48.8,
+      "notes": "One of South America's safest countries"
+    },
+    "panama": {
+      "country_name": "Panama",
+      "safety_score": 58,
+      "gpi_rank": 62,
+      "gpi_score": 1.902,
+      "numbeo_safety_index": 46.8,
+      "crime_index": 53.2,
+      "notes": "Tourist areas safe, avoid certain neighborhoods"
+    },
+    "cambodia": {
+      "country_name": "Cambodia",
+      "safety_score": 62,
+      "gpi_rank": 70,
+      "gpi_score": 1.937,
+      "numbeo_safety_index": 55.8,
+      "crime_index": 44.2,
+      "notes": "Generally safe, petty crime, road safety concerns"
+    },
+    "laos": {
+      "country_name": "Laos",
+      "safety_score": 68,
+      "gpi_rank": 42,
+      "gpi_score": 1.791,
+      "numbeo_safety_index": 62.5,
+      "crime_index": 37.5,
+      "notes": "Safe, laid-back, low violent crime"
+    },
+    "sri_lanka": {
+      "country_name": "Sri Lanka",
+      "safety_score": 60,
+      "gpi_rank": 95,
+      "gpi_score": 2.086,
+      "numbeo_safety_index": 56.2,
+      "crime_index": 43.8,
+      "notes": "Recovering, tourist areas safe"
+    },
+    "nepal": {
+      "country_name": "Nepal",
+      "safety_score": 65,
+      "gpi_rank": 73,
+      "gpi_score": 1.957,
+      "numbeo_safety_index": 61.5,
+      "crime_index": 38.5,
+      "notes": "Safe for trekkers, petty crime in cities"
+    },
+    "morocco": {
+      "country_name": "Morocco",
+      "safety_score": 62,
+      "gpi_rank": 87,
+      "gpi_score": 2.028,
+      "numbeo_safety_index": 55.8,
+      "crime_index": 44.2,
+      "notes": "Tourist areas safe, harassment concerns"
+    },
+    "south_africa": {
+      "country_name": "South Africa",
+      "safety_score": 38,
+      "gpi_rank": 118,
+      "gpi_score": 2.328,
+      "numbeo_safety_index": 28.5,
+      "crime_index": 71.5,
+      "notes": "High crime rates, stick to safe areas"
+    },
+    "egypt": {
+      "country_name": "Egypt",
+      "safety_score": 55,
+      "gpi_rank": 123,
+      "gpi_score": 2.373,
+      "numbeo_safety_index": 58.2,
+      "crime_index": 41.8,
+      "notes": "Tourist areas have security, exercise caution"
+    },
+    "kenya": {
+      "country_name": "Kenya",
+      "safety_score": 48,
+      "gpi_rank": 124,
+      "gpi_score": 2.378,
+      "numbeo_safety_index": 42.8,
+      "crime_index": 57.2,
+      "notes": "Variable, Nairobi has crime concerns"
+    },
+    "israel": {
+      "country_name": "Israel",
+      "safety_score": 52,
+      "gpi_rank": 134,
+      "gpi_score": 2.509,
+      "numbeo_safety_index": 68.5,
+      "crime_index": 31.5,
+      "notes": "Low crime but regional security concerns"
+    },
+    "iceland": {
+      "country_name": "Iceland",
+      "safety_score": 95,
+      "gpi_rank": 1,
+      "gpi_score": 1.096,
+      "numbeo_safety_index": 76.8,
+      "crime_index": 23.2,
+      "notes": "World's safest country, virtually no violent crime"
+    },
+    "canada": {
+      "country_name": "Canada",
+      "safety_score": 82,
+      "gpi_rank": 11,
+      "gpi_score": 1.378,
+      "numbeo_safety_index": 58.5,
+      "crime_index": 41.5,
+      "notes": "Very safe overall, some urban crime"
+    },
+    "switzerland": {
+      "country_name": "Switzerland",
+      "safety_score": 92,
+      "gpi_rank": 8,
+      "gpi_score": 1.335,
+      "numbeo_safety_index": 78.2,
+      "crime_index": 21.8,
+      "notes": "Extremely safe, excellent public order"
+    }
+  }
+}

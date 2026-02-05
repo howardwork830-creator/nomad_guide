@@ -1,0 +1,484 @@
+{
+  "_metadata": {
+    "version": "1.0",
+    "generated_at": "2026-02-05",
+    "origin": "Taiwan (TPE - Taoyuan International Airport)",
+    "sources": ["Google Flights", "SkyScanner", "Airline schedules"],
+    "scoring": {
+      "direct_flight_bonus": 20,
+      "duration_score_max": 60,
+      "frequency_score_max": 20
+    },
+    "methodology": "Composite score based on: direct flight availability (+20), flight duration (inversely weighted, max 60), flight frequency (max 20). Higher score = easier to reach."
+  },
+  "travel_access": {
+    "japan": {
+      "country_name": "Japan",
+      "has_direct_flight": true,
+      "flight_duration_hours": 3.0,
+      "flights_per_week": 150,
+      "access_score": 95,
+      "main_airports": ["NRT", "HND", "KIX", "FUK"],
+      "notes": "Excellent connectivity, multiple direct flights daily"
+    },
+    "south_korea": {
+      "country_name": "South Korea",
+      "has_direct_flight": true,
+      "flight_duration_hours": 2.5,
+      "flights_per_week": 120,
+      "access_score": 95,
+      "main_airports": ["ICN", "GMP"],
+      "notes": "Very accessible, short flight, frequent service"
+    },
+    "hong_kong": {
+      "country_name": "Hong Kong",
+      "has_direct_flight": true,
+      "flight_duration_hours": 1.5,
+      "flights_per_week": 100,
+      "access_score": 98,
+      "main_airports": ["HKG"],
+      "notes": "Shortest flight, extremely accessible"
+    },
+    "china": {
+      "country_name": "China",
+      "has_direct_flight": true,
+      "flight_duration_hours": 2.5,
+      "flights_per_week": 80,
+      "access_score": 85,
+      "main_airports": ["PVG", "PEK", "CAN"],
+      "notes": "Multiple direct routes to major cities"
+    },
+    "thailand": {
+      "country_name": "Thailand",
+      "has_direct_flight": true,
+      "flight_duration_hours": 3.5,
+      "flights_per_week": 70,
+      "access_score": 90,
+      "main_airports": ["BKK", "DMK"],
+      "notes": "Popular route, many airlines"
+    },
+    "vietnam": {
+      "country_name": "Vietnam",
+      "has_direct_flight": true,
+      "flight_duration_hours": 3.0,
+      "flights_per_week": 50,
+      "access_score": 88,
+      "main_airports": ["SGN", "HAN"],
+      "notes": "Good direct connections"
+    },
+    "malaysia": {
+      "country_name": "Malaysia",
+      "has_direct_flight": true,
+      "flight_duration_hours": 4.5,
+      "flights_per_week": 50,
+      "access_score": 85,
+      "main_airports": ["KUL"],
+      "notes": "Direct flights available"
+    },
+    "indonesia": {
+      "country_name": "Indonesia",
+      "has_direct_flight": true,
+      "flight_duration_hours": 5.5,
+      "flights_per_week": 40,
+      "access_score": 80,
+      "main_airports": ["CGK", "DPS"],
+      "notes": "Direct to Jakarta and Bali"
+    },
+    "philippines": {
+      "country_name": "Philippines",
+      "has_direct_flight": true,
+      "flight_duration_hours": 2.5,
+      "flights_per_week": 60,
+      "access_score": 90,
+      "main_airports": ["MNL", "CEB"],
+      "notes": "Short flight, good frequency"
+    },
+    "singapore": {
+      "country_name": "Singapore",
+      "has_direct_flight": true,
+      "flight_duration_hours": 4.5,
+      "flights_per_week": 60,
+      "access_score": 88,
+      "main_airports": ["SIN"],
+      "notes": "Major hub, many options"
+    },
+    "india": {
+      "country_name": "India",
+      "has_direct_flight": false,
+      "flight_duration_hours": 8.0,
+      "flights_per_week": 25,
+      "access_score": 55,
+      "main_airports": ["DEL", "BOM", "BLR"],
+      "notes": "Usually requires one stop via SEA hubs"
+    },
+    "uk": {
+      "country_name": "United Kingdom",
+      "has_direct_flight": false,
+      "flight_duration_hours": 16.0,
+      "flights_per_week": 30,
+      "access_score": 45,
+      "main_airports": ["LHR", "LGW"],
+      "notes": "Long journey, one stop typical"
+    },
+    "germany": {
+      "country_name": "Germany",
+      "has_direct_flight": true,
+      "flight_duration_hours": 13.0,
+      "flights_per_week": 14,
+      "access_score": 55,
+      "main_airports": ["FRA", "MUC"],
+      "notes": "Direct flight available to Frankfurt"
+    },
+    "france": {
+      "country_name": "France",
+      "has_direct_flight": true,
+      "flight_duration_hours": 13.5,
+      "flights_per_week": 10,
+      "access_score": 52,
+      "main_airports": ["CDG"],
+      "notes": "Direct flight to Paris"
+    },
+    "spain": {
+      "country_name": "Spain",
+      "has_direct_flight": false,
+      "flight_duration_hours": 16.0,
+      "flights_per_week": 20,
+      "access_score": 42,
+      "main_airports": ["MAD", "BCN"],
+      "notes": "One stop via European hubs"
+    },
+    "portugal": {
+      "country_name": "Portugal",
+      "has_direct_flight": false,
+      "flight_duration_hours": 17.0,
+      "flights_per_week": 15,
+      "access_score": 38,
+      "main_airports": ["LIS"],
+      "notes": "One stop required"
+    },
+    "netherlands": {
+      "country_name": "Netherlands",
+      "has_direct_flight": true,
+      "flight_duration_hours": 12.5,
+      "flights_per_week": 14,
+      "access_score": 58,
+      "main_airports": ["AMS"],
+      "notes": "Direct flight to Amsterdam (KLM)"
+    },
+    "usa": {
+      "country_name": "United States",
+      "has_direct_flight": true,
+      "flight_duration_hours": 12.0,
+      "flights_per_week": 35,
+      "access_score": 62,
+      "main_airports": ["LAX", "SFO", "JFK"],
+      "notes": "Direct to West Coast, good frequency"
+    },
+    "mexico": {
+      "country_name": "Mexico",
+      "has_direct_flight": false,
+      "flight_duration_hours": 20.0,
+      "flights_per_week": 15,
+      "access_score": 35,
+      "main_airports": ["MEX"],
+      "notes": "Long journey, via USA or Japan"
+    },
+    "colombia": {
+      "country_name": "Colombia",
+      "has_direct_flight": false,
+      "flight_duration_hours": 24.0,
+      "flights_per_week": 10,
+      "access_score": 28,
+      "main_airports": ["BOG"],
+      "notes": "Very long journey, 2 stops typical"
+    },
+    "argentina": {
+      "country_name": "Argentina",
+      "has_direct_flight": false,
+      "flight_duration_hours": 28.0,
+      "flights_per_week": 8,
+      "access_score": 22,
+      "main_airports": ["EZE"],
+      "notes": "Very long journey, furthest destination"
+    },
+    "uae": {
+      "country_name": "United Arab Emirates",
+      "has_direct_flight": true,
+      "flight_duration_hours": 9.0,
+      "flights_per_week": 35,
+      "access_score": 72,
+      "main_airports": ["DXB", "AUH"],
+      "notes": "Direct Emirates flights, major hub"
+    },
+    "turkey": {
+      "country_name": "Turkey",
+      "has_direct_flight": true,
+      "flight_duration_hours": 11.5,
+      "flights_per_week": 14,
+      "access_score": 58,
+      "main_airports": ["IST"],
+      "notes": "Direct Turkish Airlines"
+    },
+    "australia": {
+      "country_name": "Australia",
+      "has_direct_flight": true,
+      "flight_duration_hours": 9.0,
+      "flights_per_week": 25,
+      "access_score": 70,
+      "main_airports": ["SYD", "MEL", "BNE"],
+      "notes": "Direct flights, good connections"
+    },
+    "new_zealand": {
+      "country_name": "New Zealand",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 12,
+      "access_score": 48,
+      "main_airports": ["AKL"],
+      "notes": "Usually one stop via Australia"
+    },
+    "georgia": {
+      "country_name": "Georgia",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 10,
+      "access_score": 40,
+      "main_airports": ["TBS"],
+      "notes": "Via Istanbul or Dubai typical"
+    },
+    "estonia": {
+      "country_name": "Estonia",
+      "has_direct_flight": false,
+      "flight_duration_hours": 16.0,
+      "flights_per_week": 8,
+      "access_score": 35,
+      "main_airports": ["TLL"],
+      "notes": "Via Helsinki or European hubs"
+    },
+    "croatia": {
+      "country_name": "Croatia",
+      "has_direct_flight": false,
+      "flight_duration_hours": 15.0,
+      "flights_per_week": 10,
+      "access_score": 38,
+      "main_airports": ["ZAG", "SPU", "DBV"],
+      "notes": "Via European hubs"
+    },
+    "czech_republic": {
+      "country_name": "Czech Republic",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 12,
+      "access_score": 42,
+      "main_airports": ["PRG"],
+      "notes": "Via European hubs, Prague popular"
+    },
+    "poland": {
+      "country_name": "Poland",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 12,
+      "access_score": 42,
+      "main_airports": ["WAW", "KRK"],
+      "notes": "Via European hubs"
+    },
+    "hungary": {
+      "country_name": "Hungary",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 10,
+      "access_score": 40,
+      "main_airports": ["BUD"],
+      "notes": "Via European hubs"
+    },
+    "greece": {
+      "country_name": "Greece",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 12,
+      "access_score": 42,
+      "main_airports": ["ATH"],
+      "notes": "Via European or ME hubs"
+    },
+    "albania": {
+      "country_name": "Albania",
+      "has_direct_flight": false,
+      "flight_duration_hours": 16.0,
+      "flights_per_week": 5,
+      "access_score": 28,
+      "main_airports": ["TIA"],
+      "notes": "Limited connections, via Istanbul"
+    },
+    "romania": {
+      "country_name": "Romania",
+      "has_direct_flight": false,
+      "flight_duration_hours": 15.0,
+      "flights_per_week": 8,
+      "access_score": 35,
+      "main_airports": ["OTP"],
+      "notes": "Via Istanbul or European hubs"
+    },
+    "bulgaria": {
+      "country_name": "Bulgaria",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 8,
+      "access_score": 35,
+      "main_airports": ["SOF"],
+      "notes": "Via Istanbul or European hubs"
+    },
+    "brazil": {
+      "country_name": "Brazil",
+      "has_direct_flight": false,
+      "flight_duration_hours": 26.0,
+      "flights_per_week": 10,
+      "access_score": 25,
+      "main_airports": ["GRU", "GIG"],
+      "notes": "Very long journey, via USA or ME"
+    },
+    "peru": {
+      "country_name": "Peru",
+      "has_direct_flight": false,
+      "flight_duration_hours": 24.0,
+      "flights_per_week": 8,
+      "access_score": 28,
+      "main_airports": ["LIM"],
+      "notes": "Long journey, via USA typical"
+    },
+    "costa_rica": {
+      "country_name": "Costa Rica",
+      "has_direct_flight": false,
+      "flight_duration_hours": 22.0,
+      "flights_per_week": 8,
+      "access_score": 30,
+      "main_airports": ["SJO"],
+      "notes": "Via USA, moderately accessible"
+    },
+    "chile": {
+      "country_name": "Chile",
+      "has_direct_flight": false,
+      "flight_duration_hours": 28.0,
+      "flights_per_week": 6,
+      "access_score": 22,
+      "main_airports": ["SCL"],
+      "notes": "Very long journey, via USA or NZ"
+    },
+    "panama": {
+      "country_name": "Panama",
+      "has_direct_flight": false,
+      "flight_duration_hours": 22.0,
+      "flights_per_week": 10,
+      "access_score": 32,
+      "main_airports": ["PTY"],
+      "notes": "Via USA, Panama is a hub city"
+    },
+    "cambodia": {
+      "country_name": "Cambodia",
+      "has_direct_flight": true,
+      "flight_duration_hours": 4.0,
+      "flights_per_week": 20,
+      "access_score": 80,
+      "main_airports": ["PNH", "REP"],
+      "notes": "Direct flights, short journey"
+    },
+    "laos": {
+      "country_name": "Laos",
+      "has_direct_flight": false,
+      "flight_duration_hours": 5.0,
+      "flights_per_week": 10,
+      "access_score": 65,
+      "main_airports": ["VTE", "LPQ"],
+      "notes": "Via Bangkok, short journey"
+    },
+    "sri_lanka": {
+      "country_name": "Sri Lanka",
+      "has_direct_flight": false,
+      "flight_duration_hours": 8.0,
+      "flights_per_week": 15,
+      "access_score": 55,
+      "main_airports": ["CMB"],
+      "notes": "Via Singapore/KL typical"
+    },
+    "nepal": {
+      "country_name": "Nepal",
+      "has_direct_flight": false,
+      "flight_duration_hours": 9.0,
+      "flights_per_week": 12,
+      "access_score": 50,
+      "main_airports": ["KTM"],
+      "notes": "Via Bangkok or Singapore"
+    },
+    "morocco": {
+      "country_name": "Morocco",
+      "has_direct_flight": false,
+      "flight_duration_hours": 18.0,
+      "flights_per_week": 8,
+      "access_score": 32,
+      "main_airports": ["CMN", "RAK"],
+      "notes": "Via ME or European hubs"
+    },
+    "south_africa": {
+      "country_name": "South Africa",
+      "has_direct_flight": false,
+      "flight_duration_hours": 18.0,
+      "flights_per_week": 12,
+      "access_score": 38,
+      "main_airports": ["CPT", "JNB"],
+      "notes": "Via Hong Kong or Dubai"
+    },
+    "egypt": {
+      "country_name": "Egypt",
+      "has_direct_flight": false,
+      "flight_duration_hours": 13.0,
+      "flights_per_week": 15,
+      "access_score": 45,
+      "main_airports": ["CAI"],
+      "notes": "Via Dubai or Istanbul"
+    },
+    "kenya": {
+      "country_name": "Kenya",
+      "has_direct_flight": false,
+      "flight_duration_hours": 16.0,
+      "flights_per_week": 10,
+      "access_score": 38,
+      "main_airports": ["NBO"],
+      "notes": "Via Dubai or Bangkok"
+    },
+    "israel": {
+      "country_name": "Israel",
+      "has_direct_flight": false,
+      "flight_duration_hours": 12.0,
+      "flights_per_week": 15,
+      "access_score": 48,
+      "main_airports": ["TLV"],
+      "notes": "Via Bangkok or Istanbul"
+    },
+    "iceland": {
+      "country_name": "Iceland",
+      "has_direct_flight": false,
+      "flight_duration_hours": 20.0,
+      "flights_per_week": 8,
+      "access_score": 30,
+      "main_airports": ["KEF"],
+      "notes": "Via European hubs, long journey"
+    },
+    "canada": {
+      "country_name": "Canada",
+      "has_direct_flight": true,
+      "flight_duration_hours": 11.0,
+      "flights_per_week": 20,
+      "access_score": 65,
+      "main_airports": ["YVR", "YYZ"],
+      "notes": "Direct to Vancouver"
+    },
+    "switzerland": {
+      "country_name": "Switzerland",
+      "has_direct_flight": false,
+      "flight_duration_hours": 14.0,
+      "flights_per_week": 14,
+      "access_score": 45,
+      "main_airports": ["ZRH", "GVA"],
+      "notes": "Via European or ME hubs"
+    }
+  }
+}

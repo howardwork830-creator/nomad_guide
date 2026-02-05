@@ -1,10 +1,10 @@
 {
   "_metadata": {
-    "version": "2.0",
-    "generated_at": "2026-02-04T00:00:00Z",
+    "version": "2.1",
+    "generated_at": "2026-02-05T00:00:00Z",
     "methodology": "3-year weighted average with recency weighting (Y1: 0.5, Y2: 0.3, Y3: 0.2)",
     "sources": ["central_banks", "oanda", "numbeo", "expatistan", "google_flights_historical"],
-    "notes": "Exchange rates are TWD to foreign currency. Flight costs are round-trip from TPE. CoL is monthly budget for digital nomad lifestyle."
+    "notes": "Exchange rates are TWD to foreign currency (1 TWD = X foreign). Example: USA 0.0315 means 1 TWD buys 0.0315 USD. Flight costs are round-trip from TPE. CoL is monthly budget for digital nomad lifestyle."
   },
   "baselines": {
     "japan": {
@@ -13,9 +13,9 @@
         "value": 4.65,
         "source": "central_bank_average",
         "confidence": 0.95,
-        "last_updated": "2026-01-30",
+        "last_updated": "2026-02-05",
         "historical_range": [4.2, 5.1],
-        "notes": "Bank of Japan / Bank of Taiwan cross rate. ~145-155 JPY/USD, ~30-32 TWD/USD"
+        "notes": "Bank of Japan rate. 1 TWD = ~4.65 JPY. ~145-155 JPY/USD, ~30-32 TWD/USD"
       },
       "flight_cost_twd": {
         "value": 8500,
@@ -42,12 +42,12 @@
     "south_korea": {
       "currency": "KRW",
       "exchange_rate": {
-        "value": 0.0237,
+        "value": 42.19,
         "source": "central_bank_average",
         "confidence": 0.95,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.022, 0.026],
-        "notes": "Bank of Korea rate. ~1300-1400 KRW/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [38.5, 45.5],
+        "notes": "Bank of Korea rate. 1 TWD = ~42 KRW. ~1300-1400 KRW/USD"
       },
       "flight_cost_twd": {
         "value": 7500,
@@ -74,12 +74,12 @@
     "hong_kong": {
       "currency": "HKD",
       "exchange_rate": {
-        "value": 4.05,
+        "value": 0.247,
         "source": "central_bank_average",
         "confidence": 0.98,
-        "last_updated": "2026-01-30",
-        "historical_range": [3.9, 4.2],
-        "notes": "HKD pegged to USD, very stable. ~7.75-7.85 HKD/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.238, 0.256],
+        "notes": "HKD pegged to USD, very stable. 1 TWD = ~0.247 HKD. ~7.75-7.85 HKD/USD"
       },
       "flight_cost_twd": {
         "value": 5500,
@@ -106,12 +106,12 @@
     "china": {
       "currency": "CNY",
       "exchange_rate": {
-        "value": 4.38,
+        "value": 0.221,
         "source": "pboc_average",
         "confidence": 0.90,
-        "last_updated": "2026-01-30",
-        "historical_range": [4.2, 4.6],
-        "notes": "People's Bank of China rate. ~7.0-7.3 CNY/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.217, 0.238],
+        "notes": "People's Bank of China rate. 1 TWD = ~0.221 CNY. ~7.0-7.3 CNY/USD"
       },
       "flight_cost_twd": {
         "value": 6000,
@@ -138,12 +138,12 @@
     "thailand": {
       "currency": "THB",
       "exchange_rate": {
-        "value": 0.91,
+        "value": 1.10,
         "source": "bot_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.85, 1.0],
-        "notes": "Bank of Thailand rate. ~33-36 THB/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [1.0, 1.18],
+        "notes": "Bank of Thailand rate. 1 TWD = ~1.1 THB. ~33-36 THB/USD"
       },
       "flight_cost_twd": {
         "value": 6500,
@@ -170,12 +170,12 @@
     "vietnam": {
       "currency": "VND",
       "exchange_rate": {
-        "value": 0.00127,
+        "value": 787.4,
         "source": "sbv_average",
         "confidence": 0.90,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.0012, 0.0014],
-        "notes": "State Bank of Vietnam rate. ~24,000-25,500 VND/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [714.3, 833.3],
+        "notes": "State Bank of Vietnam rate. 1 TWD = ~787 VND. ~24,000-25,500 VND/USD"
       },
       "flight_cost_twd": {
         "value": 5500,
@@ -202,12 +202,12 @@
     "malaysia": {
       "currency": "MYR",
       "exchange_rate": {
-        "value": 7.15,
+        "value": 0.140,
         "source": "bnm_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [6.8, 7.5],
-        "notes": "Bank Negara Malaysia rate. ~4.4-4.7 MYR/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.133, 0.147],
+        "notes": "Bank Negara Malaysia rate. 1 TWD = ~0.14 MYR. ~4.4-4.7 MYR/USD"
       },
       "flight_cost_twd": {
         "value": 6000,
@@ -234,12 +234,12 @@
     "indonesia": {
       "currency": "IDR",
       "exchange_rate": {
-        "value": 0.00198,
+        "value": 505.05,
         "source": "bi_average",
         "confidence": 0.88,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.0018, 0.0022],
-        "notes": "Bank Indonesia rate. ~15,500-16,500 IDR/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [454.5, 555.6],
+        "notes": "Bank Indonesia rate. 1 TWD = ~505 IDR. ~15,500-16,500 IDR/USD"
       },
       "flight_cost_twd": {
         "value": 7000,
@@ -266,12 +266,12 @@
     "philippines": {
       "currency": "PHP",
       "exchange_rate": {
-        "value": 0.565,
+        "value": 1.77,
         "source": "bsp_average",
         "confidence": 0.90,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.52, 0.62],
-        "notes": "Bangko Sentral ng Pilipinas rate. ~55-58 PHP/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [1.61, 1.92],
+        "notes": "Bangko Sentral ng Pilipinas rate. 1 TWD = ~1.77 PHP. ~55-58 PHP/USD"
       },
       "flight_cost_twd": {
         "value": 5200,
@@ -298,12 +298,12 @@
     "singapore": {
       "currency": "SGD",
       "exchange_rate": {
-        "value": 23.5,
+        "value": 0.0426,
         "source": "mas_average",
         "confidence": 0.95,
-        "last_updated": "2026-01-30",
-        "historical_range": [22.5, 24.5],
-        "notes": "Monetary Authority of Singapore rate. ~1.32-1.38 SGD/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0408, 0.0444],
+        "notes": "Monetary Authority of Singapore rate. 1 TWD = ~0.0426 SGD. ~1.32-1.38 SGD/USD"
       },
       "flight_cost_twd": {
         "value": 7500,
@@ -330,12 +330,12 @@
     "india": {
       "currency": "INR",
       "exchange_rate": {
-        "value": 0.38,
+        "value": 2.63,
         "source": "rbi_average",
         "confidence": 0.90,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.35, 0.42],
-        "notes": "Reserve Bank of India rate. ~82-85 INR/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [2.38, 2.86],
+        "notes": "Reserve Bank of India rate. 1 TWD = ~2.63 INR. ~82-85 INR/USD"
       },
       "flight_cost_twd": {
         "value": 12500,
@@ -362,12 +362,12 @@
     "uk": {
       "currency": "GBP",
       "exchange_rate": {
-        "value": 40.2,
+        "value": 0.0249,
         "source": "boe_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [38.0, 43.0],
-        "notes": "Bank of England rate. ~0.78-0.82 GBP/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0233, 0.0263],
+        "notes": "Bank of England rate. 1 TWD = ~0.0249 GBP. ~0.78-0.82 GBP/USD"
       },
       "flight_cost_twd": {
         "value": 25000,
@@ -394,12 +394,12 @@
     "germany": {
       "currency": "EUR",
       "exchange_rate": {
-        "value": 34.2,
+        "value": 0.0292,
         "source": "ecb_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [32.5, 36.0],
-        "notes": "European Central Bank rate. ~0.90-0.95 EUR/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR. ~0.90-0.95 EUR/USD"
       },
       "flight_cost_twd": {
         "value": 22000,
@@ -426,12 +426,12 @@
     "france": {
       "currency": "EUR",
       "exchange_rate": {
-        "value": 34.2,
+        "value": 0.0292,
         "source": "ecb_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [32.5, 36.0],
-        "notes": "European Central Bank rate, same as Germany"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR. Same as Germany"
       },
       "flight_cost_twd": {
         "value": 23000,
@@ -458,12 +458,12 @@
     "spain": {
       "currency": "EUR",
       "exchange_rate": {
-        "value": 34.2,
+        "value": 0.0292,
         "source": "ecb_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [32.5, 36.0],
-        "notes": "European Central Bank rate"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR"
       },
       "flight_cost_twd": {
         "value": 24000,
@@ -490,12 +490,12 @@
     "portugal": {
       "currency": "EUR",
       "exchange_rate": {
-        "value": 34.2,
+        "value": 0.0292,
         "source": "ecb_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [32.5, 36.0],
-        "notes": "European Central Bank rate"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR"
       },
       "flight_cost_twd": {
         "value": 25000,
@@ -522,12 +522,12 @@
     "netherlands": {
       "currency": "EUR",
       "exchange_rate": {
-        "value": 34.2,
+        "value": 0.0292,
         "source": "ecb_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [32.5, 36.0],
-        "notes": "European Central Bank rate"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR"
       },
       "flight_cost_twd": {
         "value": 22500,
@@ -554,12 +554,12 @@
     "usa": {
       "currency": "USD",
       "exchange_rate": {
-        "value": 31.8,
+        "value": 0.0315,
         "source": "fed_average",
         "confidence": 0.95,
-        "last_updated": "2026-01-30",
-        "historical_range": [30.0, 33.0],
-        "notes": "Federal Reserve rate. Base currency for comparison."
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0303, 0.0333],
+        "notes": "Federal Reserve rate. 1 TWD = ~0.0315 USD. Base currency for comparison."
       },
       "flight_cost_twd": {
         "value": 28000,
@@ -586,12 +586,12 @@
     "mexico": {
       "currency": "MXN",
       "exchange_rate": {
-        "value": 1.82,
+        "value": 0.549,
         "source": "banxico_average",
         "confidence": 0.88,
-        "last_updated": "2026-01-30",
-        "historical_range": [1.7, 2.0],
-        "notes": "Banco de Mexico rate. ~17-18 MXN/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.5, 0.588],
+        "notes": "Banco de Mexico rate. 1 TWD = ~0.55 MXN. ~17-18 MXN/USD"
       },
       "flight_cost_twd": {
         "value": 30000,
@@ -618,12 +618,12 @@
     "colombia": {
       "currency": "COP",
       "exchange_rate": {
-        "value": 0.0078,
+        "value": 128.2,
         "source": "banrep_average",
         "confidence": 0.85,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.007, 0.009],
-        "notes": "Banco de la Republica rate. ~4000-4200 COP/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [111.1, 142.9],
+        "notes": "Banco de la Republica rate. 1 TWD = ~128 COP. ~4000-4200 COP/USD"
       },
       "flight_cost_twd": {
         "value": 35000,
@@ -650,12 +650,12 @@
     "argentina": {
       "currency": "ARS",
       "exchange_rate": {
-        "value": 0.035,
+        "value": 28.57,
         "source": "bcra_average",
         "confidence": 0.60,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.02, 0.05],
-        "notes": "Banco Central. HIGHLY VOLATILE. Blue dollar rate often differs significantly."
+        "last_updated": "2026-02-05",
+        "historical_range": [20.0, 50.0],
+        "notes": "Banco Central. 1 TWD = ~28.6 ARS. HIGHLY VOLATILE. Blue dollar rate often differs significantly."
       },
       "flight_cost_twd": {
         "value": 38000,
@@ -682,12 +682,12 @@
     "uae": {
       "currency": "AED",
       "exchange_rate": {
-        "value": 8.65,
+        "value": 0.116,
         "source": "cbuae_average",
         "confidence": 0.98,
-        "last_updated": "2026-01-30",
-        "historical_range": [8.5, 8.8],
-        "notes": "Central Bank of UAE. AED pegged to USD at 3.6725, very stable."
+        "last_updated": "2026-02-05",
+        "historical_range": [0.114, 0.118],
+        "notes": "Central Bank of UAE. 1 TWD = ~0.116 AED. AED pegged to USD at 3.6725, very stable."
       },
       "flight_cost_twd": {
         "value": 15500,
@@ -714,12 +714,12 @@
     "turkey": {
       "currency": "TRY",
       "exchange_rate": {
-        "value": 0.95,
+        "value": 1.05,
         "source": "tcmb_average",
         "confidence": 0.65,
-        "last_updated": "2026-01-30",
-        "historical_range": [0.7, 1.3],
-        "notes": "Central Bank of Turkey. HIGHLY VOLATILE. ~32-36 TRY/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.77, 1.43],
+        "notes": "Central Bank of Turkey. 1 TWD = ~1.05 TRY. HIGHLY VOLATILE. ~32-36 TRY/USD"
       },
       "flight_cost_twd": {
         "value": 18000,
@@ -746,12 +746,12 @@
     "australia": {
       "currency": "AUD",
       "exchange_rate": {
-        "value": 20.8,
+        "value": 0.0481,
         "source": "rba_average",
         "confidence": 0.92,
-        "last_updated": "2026-01-30",
-        "historical_range": [19.5, 22.0],
-        "notes": "Reserve Bank of Australia rate. ~0.65-0.70 AUD/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0455, 0.0513],
+        "notes": "Reserve Bank of Australia rate. 1 TWD = ~0.048 AUD. ~0.65-0.70 AUD/USD"
       },
       "flight_cost_twd": {
         "value": 18500,
@@ -778,12 +778,12 @@
     "new_zealand": {
       "currency": "NZD",
       "exchange_rate": {
-        "value": 19.2,
+        "value": 0.0521,
         "source": "rbnz_average",
         "confidence": 0.90,
-        "last_updated": "2026-01-30",
-        "historical_range": [18.0, 20.5],
-        "notes": "Reserve Bank of New Zealand rate. ~0.60-0.65 NZD/USD"
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0488, 0.0556],
+        "notes": "Reserve Bank of New Zealand rate. 1 TWD = ~0.052 NZD. ~0.60-0.65 NZD/USD"
       },
       "flight_cost_twd": {
         "value": 20500,
@@ -806,14 +806,879 @@
         "city_reference": "Auckland",
         "notes": "Beautiful country, good work-life balance"
       }
+    },
+    "georgia": {
+      "currency": "GEL",
+      "exchange_rate": {
+        "value": 0.085,
+        "source": "nbg_average",
+        "confidence": 0.85,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.075, 0.095],
+        "notes": "National Bank of Georgia rate. 1 TWD = ~0.085 GEL. ~2.65-2.75 GEL/USD"
+      },
+      "flight_cost_twd": {
+        "value": 22000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [18000, 28000],
+        "peak_seasons": ["summer_jun_aug", "new_year"],
+        "notes": "TPE-TBS, usually 1-2 stops via IST or DOH, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 850,
+        "source": "numbeo_nomadlist_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 400,
+          "food": 250,
+          "transport": 80,
+          "misc": 120
+        },
+        "city_reference": "Tbilisi",
+        "notes": "Top digital nomad destination, 1-year visa-free, very affordable"
+      }
+    },
+    "estonia": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 0.0292,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR"
+      },
+      "flight_cost_twd": {
+        "value": 24000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [20000, 32000],
+        "peak_seasons": ["summer_jun_aug", "christmas"],
+        "notes": "TPE-TLL, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1450,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 750,
+          "food": 380,
+          "transport": 150,
+          "misc": 170
+        },
+        "city_reference": "Tallinn",
+        "notes": "Digital nomad visa pioneer, e-Residency program, tech hub"
+      }
+    },
+    "croatia": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 0.0292,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. Croatia joined eurozone Jan 2023"
+      },
+      "flight_cost_twd": {
+        "value": 25000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [20000, 35000],
+        "peak_seasons": ["summer_jun_aug", "easter"],
+        "notes": "TPE-ZAG, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1350,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.86,
+        "breakdown": {
+          "accommodation": 700,
+          "food": 350,
+          "transport": 130,
+          "misc": 170
+        },
+        "city_reference": "Zagreb",
+        "notes": "Digital nomad visa available, beautiful coast, EU member"
+      }
+    },
+    "czech_republic": {
+      "currency": "CZK",
+      "exchange_rate": {
+        "value": 0.73,
+        "source": "cnb_average",
+        "confidence": 0.90,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.65, 0.80],
+        "notes": "Czech National Bank rate. 1 TWD = ~0.73 CZK. ~23-24 CZK/USD"
+      },
+      "flight_cost_twd": {
+        "value": 23000,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [19000, 30000],
+        "peak_seasons": ["christmas_markets_dec", "summer_jun_aug"],
+        "notes": "TPE-PRG, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1400,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 750,
+          "food": 350,
+          "transport": 130,
+          "misc": 170
+        },
+        "city_reference": "Prague",
+        "notes": "Major nomad hub, beautiful architecture, good infrastructure"
+      }
+    },
+    "poland": {
+      "currency": "PLN",
+      "exchange_rate": {
+        "value": 0.128,
+        "source": "nbp_average",
+        "confidence": 0.88,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.115, 0.140],
+        "notes": "National Bank of Poland rate. 1 TWD = ~0.128 PLN. ~4.0-4.2 PLN/USD"
+      },
+      "flight_cost_twd": {
+        "value": 23500,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [19000, 30000],
+        "peak_seasons": ["summer_jun_aug", "christmas"],
+        "notes": "TPE-WAW, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1200,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 600,
+          "food": 320,
+          "transport": 120,
+          "misc": 160
+        },
+        "city_reference": "Warsaw",
+        "notes": "Growing tech hub, affordable for Europe, good internet"
+      }
+    },
+    "hungary": {
+      "currency": "HUF",
+      "exchange_rate": {
+        "value": 11.5,
+        "source": "mnb_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [10.0, 13.0],
+        "notes": "Hungarian National Bank rate. 1 TWD = ~11.5 HUF. ~360-380 HUF/USD"
+      },
+      "flight_cost_twd": {
+        "value": 24000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [19500, 32000],
+        "peak_seasons": ["summer_jun_aug", "christmas"],
+        "notes": "TPE-BUD, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1150,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 550,
+          "food": 320,
+          "transport": 120,
+          "misc": 160
+        },
+        "city_reference": "Budapest",
+        "notes": "Popular nomad destination, thermal baths, ruin bars culture"
+      }
+    },
+    "greece": {
+      "currency": "EUR",
+      "exchange_rate": {
+        "value": 0.0292,
+        "source": "ecb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0278, 0.0308],
+        "notes": "European Central Bank rate. 1 TWD = ~0.0292 EUR"
+      },
+      "flight_cost_twd": {
+        "value": 24500,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [20000, 35000],
+        "peak_seasons": ["summer_jun_sep", "easter"],
+        "notes": "TPE-ATH, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1400,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.86,
+        "breakdown": {
+          "accommodation": 700,
+          "food": 380,
+          "transport": 150,
+          "misc": 170
+        },
+        "city_reference": "Athens",
+        "notes": "Digital nomad visa available, islands lifestyle, good weather"
+      }
+    },
+    "albania": {
+      "currency": "ALL",
+      "exchange_rate": {
+        "value": 3.0,
+        "source": "boa_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [2.7, 3.3],
+        "notes": "Bank of Albania rate. 1 TWD = ~3.0 ALL. ~95-100 ALL/USD"
+      },
+      "flight_cost_twd": {
+        "value": 26000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [22000, 35000],
+        "peak_seasons": ["summer_jun_aug"],
+        "notes": "TPE-TIA, usually 2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 750,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.82,
+        "breakdown": {
+          "accommodation": 350,
+          "food": 220,
+          "transport": 80,
+          "misc": 100
+        },
+        "city_reference": "Tirana",
+        "notes": "Very affordable, growing scene, beautiful coast"
+      }
+    },
+    "romania": {
+      "currency": "RON",
+      "exchange_rate": {
+        "value": 0.147,
+        "source": "bnr_average",
+        "confidence": 0.88,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.135, 0.158],
+        "notes": "National Bank of Romania rate. 1 TWD = ~0.147 RON. ~4.6-4.8 RON/USD"
+      },
+      "flight_cost_twd": {
+        "value": 25000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [20000, 33000],
+        "peak_seasons": ["summer_jun_aug", "christmas"],
+        "notes": "TPE-OTP, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1050,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.86,
+        "breakdown": {
+          "accommodation": 500,
+          "food": 300,
+          "transport": 100,
+          "misc": 150
+        },
+        "city_reference": "Bucharest",
+        "notes": "Tech hub, fast internet, affordable EU member"
+      }
+    },
+    "bulgaria": {
+      "currency": "BGN",
+      "exchange_rate": {
+        "value": 0.057,
+        "source": "bnb_average",
+        "confidence": 0.90,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.054, 0.060],
+        "notes": "Bulgarian National Bank rate. BGN pegged to EUR. 1 TWD = ~0.057 BGN"
+      },
+      "flight_cost_twd": {
+        "value": 25500,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [21000, 34000],
+        "peak_seasons": ["summer_jun_aug", "ski_dec_mar"],
+        "notes": "TPE-SOF, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 900,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.86,
+        "breakdown": {
+          "accommodation": 420,
+          "food": 260,
+          "transport": 90,
+          "misc": 130
+        },
+        "city_reference": "Sofia",
+        "notes": "Very affordable EU member, growing tech scene"
+      }
+    },
+    "brazil": {
+      "currency": "BRL",
+      "exchange_rate": {
+        "value": 0.158,
+        "source": "bcb_average",
+        "confidence": 0.80,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.140, 0.175],
+        "notes": "Central Bank of Brazil rate. 1 TWD = ~0.158 BRL. ~5.0-5.3 BRL/USD"
+      },
+      "flight_cost_twd": {
+        "value": 42000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [35000, 55000],
+        "peak_seasons": ["carnival_feb", "summer_dec_feb"],
+        "notes": "TPE-GRU, usually 1-2 stops, economy, round-trip, long journey"
+      },
+      "monthly_col_usd": {
+        "value": 1050,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 500,
+          "food": 300,
+          "transport": 100,
+          "misc": 150
+        },
+        "city_reference": "Sao Paulo",
+        "notes": "Large country, Rio/Floripa nomad scenes, cultural richness"
+      }
+    },
+    "peru": {
+      "currency": "PEN",
+      "exchange_rate": {
+        "value": 0.118,
+        "source": "bcrp_average",
+        "confidence": 0.85,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.108, 0.128],
+        "notes": "Central Reserve Bank of Peru rate. 1 TWD = ~0.118 PEN. ~3.7-3.9 PEN/USD"
+      },
+      "flight_cost_twd": {
+        "value": 38000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [32000, 48000],
+        "peak_seasons": ["jun_aug_dry", "inti_raymi_jun"],
+        "notes": "TPE-LIM, usually 2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 900,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.82,
+        "breakdown": {
+          "accommodation": 420,
+          "food": 260,
+          "transport": 90,
+          "misc": 130
+        },
+        "city_reference": "Lima",
+        "notes": "Growing nomad scene, Machu Picchu tourism, food culture"
+      }
+    },
+    "costa_rica": {
+      "currency": "CRC",
+      "exchange_rate": {
+        "value": 16.2,
+        "source": "bccr_average",
+        "confidence": 0.85,
+        "last_updated": "2026-02-05",
+        "historical_range": [14.5, 18.0],
+        "notes": "Central Bank of Costa Rica rate. 1 TWD = ~16.2 CRC. ~510-530 CRC/USD"
+      },
+      "flight_cost_twd": {
+        "value": 35000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [28000, 45000],
+        "peak_seasons": ["dry_dec_apr", "christmas"],
+        "notes": "TPE-SJO, usually 1-2 stops via USA, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1300,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 650,
+          "food": 350,
+          "transport": 130,
+          "misc": 170
+        },
+        "city_reference": "San Jose",
+        "notes": "Stable country, nature-focused, nomad friendly, pura vida lifestyle"
+      }
+    },
+    "chile": {
+      "currency": "CLP",
+      "exchange_rate": {
+        "value": 29.5,
+        "source": "bcc_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [25.0, 34.0],
+        "notes": "Central Bank of Chile rate. 1 TWD = ~29.5 CLP. ~920-970 CLP/USD"
+      },
+      "flight_cost_twd": {
+        "value": 40000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [33000, 52000],
+        "peak_seasons": ["summer_dec_feb", "ski_jun_sep"],
+        "notes": "TPE-SCL, usually 2 stops, economy, round-trip, long journey"
+      },
+      "monthly_col_usd": {
+        "value": 1200,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 600,
+          "food": 320,
+          "transport": 120,
+          "misc": 160
+        },
+        "city_reference": "Santiago",
+        "notes": "Most developed Latin American country, Patagonia access"
+      }
+    },
+    "panama": {
+      "currency": "USD",
+      "exchange_rate": {
+        "value": 0.0315,
+        "source": "fed_average",
+        "confidence": 0.95,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.0303, 0.0333],
+        "notes": "Panama uses USD (Balboa pegged 1:1). Same as USA rate."
+      },
+      "flight_cost_twd": {
+        "value": 36000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [30000, 45000],
+        "peak_seasons": ["dry_dec_apr", "christmas"],
+        "notes": "TPE-PTY, usually 1-2 stops via USA, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 1400,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 700,
+          "food": 380,
+          "transport": 140,
+          "misc": 180
+        },
+        "city_reference": "Panama City",
+        "notes": "Tax friendly, hub city, dollarized economy, canal tourism"
+      }
+    },
+    "cambodia": {
+      "currency": "KHR",
+      "exchange_rate": {
+        "value": 128.0,
+        "source": "nbc_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [115.0, 140.0],
+        "notes": "National Bank of Cambodia rate. 1 TWD = ~128 KHR. USD widely used. ~4050-4100 KHR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 8500,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [6500, 12000],
+        "peak_seasons": ["nov_mar_dry", "khmer_new_year_apr"],
+        "notes": "TPE-PNH, direct or one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 750,
+        "source": "numbeo_nomadlist_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 350,
+          "food": 220,
+          "transport": 80,
+          "misc": 100
+        },
+        "city_reference": "Phnom Penh",
+        "notes": "Very affordable, Siem Reap for temples, growing nomad scene"
+      }
+    },
+    "laos": {
+      "currency": "LAK",
+      "exchange_rate": {
+        "value": 670.0,
+        "source": "bol_average",
+        "confidence": 0.75,
+        "last_updated": "2026-02-05",
+        "historical_range": [580.0, 750.0],
+        "notes": "Bank of Laos rate. 1 TWD = ~670 LAK. High volatility. ~20,500-21,500 LAK/USD"
+      },
+      "flight_cost_twd": {
+        "value": 9500,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [7500, 13000],
+        "peak_seasons": ["nov_mar_dry", "pi_mai_apr"],
+        "notes": "TPE-VTE, usually one stop via BKK, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 650,
+        "source": "numbeo_nomadlist_average",
+        "confidence": 0.78,
+        "breakdown": {
+          "accommodation": 300,
+          "food": 200,
+          "transport": 70,
+          "misc": 80
+        },
+        "city_reference": "Vientiane",
+        "notes": "Ultra low CoL, relaxed visa, laid-back lifestyle, Luang Prabang"
+      }
+    },
+    "sri_lanka": {
+      "currency": "LKR",
+      "exchange_rate": {
+        "value": 9.5,
+        "source": "cbsl_average",
+        "confidence": 0.75,
+        "last_updated": "2026-02-05",
+        "historical_range": [8.5, 11.0],
+        "notes": "Central Bank of Sri Lanka rate. 1 TWD = ~9.5 LKR. Currency stabilizing post-crisis. ~300-320 LKR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 14000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [11000, 19000],
+        "peak_seasons": ["dec_mar_dry", "jul_aug"],
+        "notes": "TPE-CMB, usually one stop via SIN/KUL, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 700,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.80,
+        "breakdown": {
+          "accommodation": 320,
+          "food": 210,
+          "transport": 70,
+          "misc": 100
+        },
+        "city_reference": "Colombo",
+        "notes": "Post-recovery destination, beach + culture, affordable"
+      }
+    },
+    "nepal": {
+      "currency": "NPR",
+      "exchange_rate": {
+        "value": 4.2,
+        "source": "nrb_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [3.8, 4.6],
+        "notes": "Nepal Rastra Bank rate. NPR pegged to INR. 1 TWD = ~4.2 NPR. ~133-135 NPR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 15000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [12000, 20000],
+        "peak_seasons": ["oct_nov_trekking", "mar_may_spring"],
+        "notes": "TPE-KTM, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 550,
+        "source": "numbeo_nomadlist_average",
+        "confidence": 0.80,
+        "breakdown": {
+          "accommodation": 250,
+          "food": 170,
+          "transport": 50,
+          "misc": 80
+        },
+        "city_reference": "Kathmandu",
+        "notes": "Ultra low CoL, adventure base, trekking paradise, spiritual"
+      }
+    },
+    "morocco": {
+      "currency": "MAD",
+      "exchange_rate": {
+        "value": 0.32,
+        "source": "bam_average",
+        "confidence": 0.85,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.29, 0.35],
+        "notes": "Bank Al-Maghrib rate. 1 TWD = ~0.32 MAD. ~10.0-10.3 MAD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 28000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [23000, 38000],
+        "peak_seasons": ["spring_mar_may", "autumn_sep_nov"],
+        "notes": "TPE-CMN, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 900,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.82,
+        "breakdown": {
+          "accommodation": 420,
+          "food": 260,
+          "transport": 90,
+          "misc": 130
+        },
+        "city_reference": "Marrakech",
+        "notes": "Marrakech nomad scene, close to EU, rich culture"
+      }
+    },
+    "south_africa": {
+      "currency": "ZAR",
+      "exchange_rate": {
+        "value": 0.58,
+        "source": "sarb_average",
+        "confidence": 0.80,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.50, 0.65],
+        "notes": "South African Reserve Bank rate. 1 TWD = ~0.58 ZAR. ~18-19 ZAR/USD"
+      },
+      "flight_cost_twd": {
+        "value": 32000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [26000, 42000],
+        "peak_seasons": ["dec_jan_summer", "safari_jun_oct"],
+        "notes": "TPE-CPT, usually 1-2 stops, economy, round-trip, long journey"
+      },
+      "monthly_col_usd": {
+        "value": 1100,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.82,
+        "breakdown": {
+          "accommodation": 520,
+          "food": 310,
+          "transport": 110,
+          "misc": 160
+        },
+        "city_reference": "Cape Town",
+        "notes": "Cape Town nomad hub, beautiful scenery, good infrastructure"
+      }
+    },
+    "egypt": {
+      "currency": "EGP",
+      "exchange_rate": {
+        "value": 1.55,
+        "source": "cbe_average",
+        "confidence": 0.70,
+        "last_updated": "2026-02-05",
+        "historical_range": [1.30, 1.80],
+        "notes": "Central Bank of Egypt rate. Currency volatile. 1 TWD = ~1.55 EGP. ~48-52 EGP/USD"
+      },
+      "flight_cost_twd": {
+        "value": 22000,
+        "source": "google_flights_historical",
+        "confidence": 0.80,
+        "seasonal_range": [18000, 30000],
+        "peak_seasons": ["oct_apr_mild", "christmas"],
+        "notes": "TPE-CAI, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 650,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.78,
+        "breakdown": {
+          "accommodation": 300,
+          "food": 190,
+          "transport": 60,
+          "misc": 100
+        },
+        "city_reference": "Cairo",
+        "notes": "Historical wonders, very low CoL, pyramids and culture"
+      }
+    },
+    "kenya": {
+      "currency": "KES",
+      "exchange_rate": {
+        "value": 4.05,
+        "source": "cbk_average",
+        "confidence": 0.82,
+        "last_updated": "2026-02-05",
+        "historical_range": [3.70, 4.40],
+        "notes": "Central Bank of Kenya rate. 1 TWD = ~4.05 KES. ~128-135 KES/USD"
+      },
+      "flight_cost_twd": {
+        "value": 28000,
+        "source": "google_flights_historical",
+        "confidence": 0.75,
+        "seasonal_range": [23000, 38000],
+        "peak_seasons": ["jul_oct_migration", "dec_mar_dry"],
+        "notes": "TPE-NBO, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 850,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.80,
+        "breakdown": {
+          "accommodation": 400,
+          "food": 250,
+          "transport": 80,
+          "misc": 120
+        },
+        "city_reference": "Nairobi",
+        "notes": "Nairobi tech hub (Silicon Savannah), safari access, startup scene"
+      }
+    },
+    "israel": {
+      "currency": "ILS",
+      "exchange_rate": {
+        "value": 0.116,
+        "source": "boi_average",
+        "confidence": 0.88,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.105, 0.125],
+        "notes": "Bank of Israel rate. 1 TWD = ~0.116 ILS. ~3.6-3.8 ILS/USD"
+      },
+      "flight_cost_twd": {
+        "value": 20000,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [16000, 28000],
+        "peak_seasons": ["jewish_holidays", "summer"],
+        "notes": "TPE-TLV, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2400,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.85,
+        "breakdown": {
+          "accommodation": 1400,
+          "food": 550,
+          "transport": 200,
+          "misc": 250
+        },
+        "city_reference": "Tel Aviv",
+        "notes": "Tech hub, startup nation, beach lifestyle, high CoL"
+      }
+    },
+    "iceland": {
+      "currency": "ISK",
+      "exchange_rate": {
+        "value": 4.35,
+        "source": "cbi_average",
+        "confidence": 0.85,
+        "last_updated": "2026-02-05",
+        "historical_range": [4.0, 4.7],
+        "notes": "Central Bank of Iceland rate. 1 TWD = ~4.35 ISK. ~137-142 ISK/USD"
+      },
+      "flight_cost_twd": {
+        "value": 35000,
+        "source": "google_flights_historical",
+        "confidence": 0.78,
+        "seasonal_range": [28000, 48000],
+        "peak_seasons": ["summer_jun_aug", "northern_lights_sep_mar"],
+        "notes": "TPE-KEF, usually 1-2 stops, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2800,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.82,
+        "breakdown": {
+          "accommodation": 1600,
+          "food": 680,
+          "transport": 250,
+          "misc": 270
+        },
+        "city_reference": "Reykjavik",
+        "notes": "Very expensive, stunning nature, remote work friendly"
+      }
+    },
+    "canada": {
+      "currency": "CAD",
+      "exchange_rate": {
+        "value": 0.0432,
+        "source": "boc_average",
+        "confidence": 0.92,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.040, 0.046],
+        "notes": "Bank of Canada rate. 1 TWD = ~0.0432 CAD. ~1.35-1.40 CAD/USD"
+      },
+      "flight_cost_twd": {
+        "value": 30000,
+        "source": "google_flights_historical",
+        "confidence": 0.85,
+        "seasonal_range": [25000, 40000],
+        "peak_seasons": ["summer_jun_aug", "ski_dec_mar"],
+        "notes": "TPE-YVR, direct available, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 2500,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.88,
+        "breakdown": {
+          "accommodation": 1450,
+          "food": 580,
+          "transport": 220,
+          "misc": 250
+        },
+        "city_reference": "Vancouver",
+        "notes": "High quality of life, multicultural, beautiful nature"
+      }
+    },
+    "switzerland": {
+      "currency": "CHF",
+      "exchange_rate": {
+        "value": 0.028,
+        "source": "snb_average",
+        "confidence": 0.92,
+        "last_updated": "2026-02-05",
+        "historical_range": [0.026, 0.030],
+        "notes": "Swiss National Bank rate. 1 TWD = ~0.028 CHF. ~0.88-0.92 CHF/USD"
+      },
+      "flight_cost_twd": {
+        "value": 28000,
+        "source": "google_flights_historical",
+        "confidence": 0.82,
+        "seasonal_range": [23000, 38000],
+        "peak_seasons": ["ski_dec_mar", "summer_jun_aug"],
+        "notes": "TPE-ZRH, usually one stop, economy, round-trip"
+      },
+      "monthly_col_usd": {
+        "value": 3500,
+        "source": "numbeo_expatistan_average",
+        "confidence": 0.90,
+        "breakdown": {
+          "accommodation": 2000,
+          "food": 850,
+          "transport": 350,
+          "misc": 300
+        },
+        "city_reference": "Zurich",
+        "notes": "Most expensive country, exceptional quality, Alps access"
+      }
     }
   },
   "_validation": {
+    "exchange_rate_direction": "All rates are TWD to foreign (1 TWD = X foreign currency)",
     "exchange_rate_sanity_checks": {
-      "JPY": "~4.5-5.0 TWD/JPY, JPY ~145-155/USD",
-      "USD": "~31-33 TWD/USD baseline",
-      "EUR": "~34-35 TWD/EUR, EUR ~0.92/USD",
-      "GBP": "~40-42 TWD/GBP, GBP ~0.78/USD"
+      "JPY": "1 TWD = ~4.65 JPY (JPY ~145-155/USD)",
+      "USD": "1 TWD = ~0.0315 USD (~31-33 TWD/USD)",
+      "EUR": "1 TWD = ~0.0292 EUR (~34-35 TWD/EUR)",
+      "GBP": "1 TWD = ~0.0249 GBP (~40-42 TWD/GBP)"
     },
     "flight_cost_ranges": {
       "nearby_asia": "5000-10000 TWD",

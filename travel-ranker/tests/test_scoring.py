@@ -14,7 +14,13 @@ from utils.scoring import (
     clip,
     FLIGHT_WEIGHT,
     EXCHANGE_WEIGHT,
-    COL_WEIGHT
+    COL_WEIGHT,
+    SAFETY_WEIGHT,
+    VISA_WEIGHT,
+    ACCESS_WEIGHT,
+    LEGACY_FLIGHT_WEIGHT,
+    LEGACY_EXCHANGE_WEIGHT,
+    LEGACY_COL_WEIGHT,
 )
 
 
@@ -133,8 +139,17 @@ class TestDestinationScore:
     """Tests for full destination score calculation."""
 
     def test_weights_sum_to_one(self):
-        """Verify weights sum to 1.0."""
-        assert FLIGHT_WEIGHT + EXCHANGE_WEIGHT + COL_WEIGHT == 1.0
+        """Verify weights sum to 1.0 for both expanded and legacy systems."""
+        # Expanded 6-indicator weights
+        expanded_sum = (
+            EXCHANGE_WEIGHT + FLIGHT_WEIGHT + COL_WEIGHT +
+            SAFETY_WEIGHT + VISA_WEIGHT + ACCESS_WEIGHT
+        )
+        assert expanded_sum == 1.0
+
+        # Legacy 3-indicator weights
+        legacy_sum = LEGACY_EXCHANGE_WEIGHT + LEGACY_FLIGHT_WEIGHT + LEGACY_COL_WEIGHT
+        assert legacy_sum == 1.0
 
     def test_baseline_scenario(self):
         """All values at baseline should give moderate score."""

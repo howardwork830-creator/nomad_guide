@@ -1,4 +1,7 @@
 {
+  "_metadata": {
+    "notes": "Exchange rates are TWD to foreign currency (1 TWD = X foreign). Example: USA 0.0315 means 1 TWD buys 0.0315 USD."
+  },
   "origin": {
     "country": "Taiwan",
     "airport_code": "TPE",
@@ -303,6 +306,330 @@
         "exchange_rate": 0.0521,
         "flight_cost_twd": 20500,
         "monthly_col_usd": 2300
+      }
+    },
+    "georgia": {
+      "name": "Georgia",
+      "airport_code": "TBS",
+      "currency_code": "GEL",
+      "region": "Europe",
+      "capital_city": "Tbilisi",
+      "baseline": {
+        "exchange_rate": 0.085,
+        "flight_cost_twd": 22000,
+        "monthly_col_usd": 850
+      }
+    },
+    "estonia": {
+      "name": "Estonia",
+      "airport_code": "TLL",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Tallinn",
+      "baseline": {
+        "exchange_rate": 0.0292,
+        "flight_cost_twd": 24000,
+        "monthly_col_usd": 1450
+      }
+    },
+    "croatia": {
+      "name": "Croatia",
+      "airport_code": "ZAG",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Zagreb",
+      "baseline": {
+        "exchange_rate": 0.0292,
+        "flight_cost_twd": 25000,
+        "monthly_col_usd": 1350
+      }
+    },
+    "czech_republic": {
+      "name": "Czech Republic",
+      "airport_code": "PRG",
+      "currency_code": "CZK",
+      "region": "Europe",
+      "capital_city": "Prague",
+      "baseline": {
+        "exchange_rate": 0.73,
+        "flight_cost_twd": 23000,
+        "monthly_col_usd": 1400
+      }
+    },
+    "poland": {
+      "name": "Poland",
+      "airport_code": "WAW",
+      "currency_code": "PLN",
+      "region": "Europe",
+      "capital_city": "Warsaw",
+      "baseline": {
+        "exchange_rate": 0.128,
+        "flight_cost_twd": 23500,
+        "monthly_col_usd": 1200
+      }
+    },
+    "hungary": {
+      "name": "Hungary",
+      "airport_code": "BUD",
+      "currency_code": "HUF",
+      "region": "Europe",
+      "capital_city": "Budapest",
+      "baseline": {
+        "exchange_rate": 11.5,
+        "flight_cost_twd": 24000,
+        "monthly_col_usd": 1150
+      }
+    },
+    "greece": {
+      "name": "Greece",
+      "airport_code": "ATH",
+      "currency_code": "EUR",
+      "region": "Europe",
+      "capital_city": "Athens",
+      "baseline": {
+        "exchange_rate": 0.0292,
+        "flight_cost_twd": 24500,
+        "monthly_col_usd": 1400
+      }
+    },
+    "albania": {
+      "name": "Albania",
+      "airport_code": "TIA",
+      "currency_code": "ALL",
+      "region": "Europe",
+      "capital_city": "Tirana",
+      "baseline": {
+        "exchange_rate": 3.0,
+        "flight_cost_twd": 26000,
+        "monthly_col_usd": 750
+      }
+    },
+    "romania": {
+      "name": "Romania",
+      "airport_code": "OTP",
+      "currency_code": "RON",
+      "region": "Europe",
+      "capital_city": "Bucharest",
+      "baseline": {
+        "exchange_rate": 0.147,
+        "flight_cost_twd": 25000,
+        "monthly_col_usd": 1050
+      }
+    },
+    "bulgaria": {
+      "name": "Bulgaria",
+      "airport_code": "SOF",
+      "currency_code": "BGN",
+      "region": "Europe",
+      "capital_city": "Sofia",
+      "baseline": {
+        "exchange_rate": 0.057,
+        "flight_cost_twd": 25500,
+        "monthly_col_usd": 900
+      }
+    },
+    "brazil": {
+      "name": "Brazil",
+      "airport_code": "GRU",
+      "currency_code": "BRL",
+      "region": "Americas",
+      "capital_city": "Sao Paulo",
+      "baseline": {
+        "exchange_rate": 0.158,
+        "flight_cost_twd": 42000,
+        "monthly_col_usd": 1050
+      }
+    },
+    "peru": {
+      "name": "Peru",
+      "airport_code": "LIM",
+      "currency_code": "PEN",
+      "region": "Americas",
+      "capital_city": "Lima",
+      "baseline": {
+        "exchange_rate": 0.118,
+        "flight_cost_twd": 38000,
+        "monthly_col_usd": 900
+      }
+    },
+    "costa_rica": {
+      "name": "Costa Rica",
+      "airport_code": "SJO",
+      "currency_code": "CRC",
+      "region": "Americas",
+      "capital_city": "San Jose",
+      "baseline": {
+        "exchange_rate": 16.2,
+        "flight_cost_twd": 35000,
+        "monthly_col_usd": 1300
+      }
+    },
+    "chile": {
+      "name": "Chile",
+      "airport_code": "SCL",
+      "currency_code": "CLP",
+      "region": "Americas",
+      "capital_city": "Santiago",
+      "baseline": {
+        "exchange_rate": 29.5,
+        "flight_cost_twd": 40000,
+        "monthly_col_usd": 1200
+      }
+    },
+    "panama": {
+      "name": "Panama",
+      "airport_code": "PTY",
+      "currency_code": "USD",
+      "region": "Americas",
+      "capital_city": "Panama City",
+      "baseline": {
+        "exchange_rate": 0.0315,
+        "flight_cost_twd": 36000,
+        "monthly_col_usd": 1400
+      }
+    },
+    "cambodia": {
+      "name": "Cambodia",
+      "airport_code": "PNH",
+      "currency_code": "KHR",
+      "region": "Southeast Asia",
+      "capital_city": "Phnom Penh",
+      "baseline": {
+        "exchange_rate": 128.0,
+        "flight_cost_twd": 8500,
+        "monthly_col_usd": 750
+      }
+    },
+    "laos": {
+      "name": "Laos",
+      "airport_code": "VTE",
+      "currency_code": "LAK",
+      "region": "Southeast Asia",
+      "capital_city": "Vientiane",
+      "baseline": {
+        "exchange_rate": 670.0,
+        "flight_cost_twd": 9500,
+        "monthly_col_usd": 650
+      }
+    },
+    "sri_lanka": {
+      "name": "Sri Lanka",
+      "airport_code": "CMB",
+      "currency_code": "LKR",
+      "region": "South Asia",
+      "capital_city": "Colombo",
+      "baseline": {
+        "exchange_rate": 9.5,
+        "flight_cost_twd": 14000,
+        "monthly_col_usd": 700
+      }
+    },
+    "nepal": {
+      "name": "Nepal",
+      "airport_code": "KTM",
+      "currency_code": "NPR",
+      "region": "South Asia",
+      "capital_city": "Kathmandu",
+      "baseline": {
+        "exchange_rate": 4.2,
+        "flight_cost_twd": 15000,
+        "monthly_col_usd": 550
+      }
+    },
+    "morocco": {
+      "name": "Morocco",
+      "airport_code": "CMN",
+      "currency_code": "MAD",
+      "region": "Africa",
+      "capital_city": "Casablanca",
+      "baseline": {
+        "exchange_rate": 0.32,
+        "flight_cost_twd": 28000,
+        "monthly_col_usd": 900
+      }
+    },
+    "south_africa": {
+      "name": "South Africa",
+      "airport_code": "CPT",
+      "currency_code": "ZAR",
+      "region": "Africa",
+      "capital_city": "Cape Town",
+      "baseline": {
+        "exchange_rate": 0.58,
+        "flight_cost_twd": 32000,
+        "monthly_col_usd": 1100
+      }
+    },
+    "egypt": {
+      "name": "Egypt",
+      "airport_code": "CAI",
+      "currency_code": "EGP",
+      "region": "Africa",
+      "capital_city": "Cairo",
+      "baseline": {
+        "exchange_rate": 1.55,
+        "flight_cost_twd": 22000,
+        "monthly_col_usd": 650
+      }
+    },
+    "kenya": {
+      "name": "Kenya",
+      "airport_code": "NBO",
+      "currency_code": "KES",
+      "region": "Africa",
+      "capital_city": "Nairobi",
+      "baseline": {
+        "exchange_rate": 4.05,
+        "flight_cost_twd": 28000,
+        "monthly_col_usd": 850
+      }
+    },
+    "israel": {
+      "name": "Israel",
+      "airport_code": "TLV",
+      "currency_code": "ILS",
+      "region": "Middle East",
+      "capital_city": "Tel Aviv",
+      "baseline": {
+        "exchange_rate": 0.116,
+        "flight_cost_twd": 20000,
+        "monthly_col_usd": 2400
+      }
+    },
+    "iceland": {
+      "name": "Iceland",
+      "airport_code": "KEF",
+      "currency_code": "ISK",
+      "region": "Europe",
+      "capital_city": "Reykjavik",
+      "baseline": {
+        "exchange_rate": 4.35,
+        "flight_cost_twd": 35000,
+        "monthly_col_usd": 2800
+      }
+    },
+    "canada": {
+      "name": "Canada",
+      "airport_code": "YVR",
+      "currency_code": "CAD",
+      "region": "Americas",
+      "capital_city": "Vancouver",
+      "baseline": {
+        "exchange_rate": 0.0432,
+        "flight_cost_twd": 30000,
+        "monthly_col_usd": 2500
+      }
+    },
+    "switzerland": {
+      "name": "Switzerland",
+      "airport_code": "ZRH",
+      "currency_code": "CHF",
+      "region": "Europe",
+      "capital_city": "Zurich",
+      "baseline": {
+        "exchange_rate": 0.028,
+        "flight_cost_twd": 28000,
+        "monthly_col_usd": 3500
       }
     }
   }

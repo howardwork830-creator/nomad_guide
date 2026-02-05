@@ -6,11 +6,15 @@ Enhanced with:
 - Confidence-weighted scoring
 - Deterministic results (no random variation)
 - Data quality multiplier
+- New indicators: Safety, Visa, Travel Accessibility
 
-Scoring weights:
-- Flight cost: 20%
-- Exchange rate: 30%
-- Cost of living: 50%
+Scoring weights (v2 - expanded indicators):
+- Exchange rate: 20%
+- Flight cost: 15%
+- Cost of living: 35%
+- Safety index: 15%
+- Visa ease: 10%
+- Travel accessibility: 5%
 """
 
 from typing import Dict, Any, List, Tuple, Optional
@@ -30,10 +34,18 @@ from utils.logging_config import get_logger
 # Logger
 logger = get_logger("scoring")
 
-# Scoring weights
-FLIGHT_WEIGHT = 0.20
-EXCHANGE_WEIGHT = 0.30
-COL_WEIGHT = 0.50
+# Scoring weights (v2 - expanded indicators)
+EXCHANGE_WEIGHT = 0.20
+FLIGHT_WEIGHT = 0.15
+COL_WEIGHT = 0.35
+SAFETY_WEIGHT = 0.15
+VISA_WEIGHT = 0.10
+ACCESS_WEIGHT = 0.05
+
+# Legacy weights (for backwards compatibility)
+LEGACY_FLIGHT_WEIGHT = 0.20
+LEGACY_EXCHANGE_WEIGHT = 0.30
+LEGACY_COL_WEIGHT = 0.50
 
 # Badge thresholds
 BADGE_EXCELLENT_THRESHOLD = 85
@@ -41,6 +53,10 @@ BADGE_HOT_DEAL_THRESHOLD = 15  # overall change %
 BADGE_CURRENCY_WIN_THRESHOLD = 20  # rate change %
 BADGE_FLIGHT_DEAL_THRESHOLD = 25  # flight change %
 BADGE_DEFLATION_THRESHOLD = 15  # col change %
+BADGE_SAFE_HAVEN_THRESHOLD = 85  # safety score
+BADGE_EASY_ENTRY_THRESHOLD = 100  # visa score (visa-free)
+BADGE_NOMAD_VISA_THRESHOLD = True  # has digital nomad visa
+BADGE_WELL_CONNECTED_THRESHOLD = 80  # access score
 
 # Badge styles for HTML rendering (clean, no emoji)
 BADGE_STYLES = {
@@ -49,6 +65,10 @@ BADGE_STYLES = {
     "CURRENCY WIN": {"bg": "#E3F2FD", "text": "#1565C0", "label": "CURRENCY WIN"},
     "FLIGHT DEAL": {"bg": "#FFF3E0", "text": "#E65100", "label": "FLIGHT DEAL"},
     "DEFLATION": {"bg": "#F3E5F5", "text": "#7B1FA2", "label": "DEFLATION"},
+    "SAFE HAVEN": {"bg": "#E0F7FA", "text": "#00695C", "label": "SAFE HAVEN"},
+    "EASY ENTRY": {"bg": "#FFF8E1", "text": "#FF6F00", "label": "EASY ENTRY"},
+    "NOMAD VISA": {"bg": "#FCE4EC", "text": "#AD1457", "label": "NOMAD VISA"},
+    "WELL CONNECTED": {"bg": "#E8EAF6", "text": "#283593", "label": "WELL CONNECTED"},
 }
 
 
@@ -215,6 +235,88 @@ def calculate_col_score(
     return score, -col_change_pct, confidence  # Negative because lower CoL is better
 
 
+def calculate_safety_score(safety_index: float) -> Tuple[float, float]:
+    """
+    Calculate safety score from composite safety index.
+
+    The safety_index is already normalized to 0-100.
+    Higher index = safer destination = higher score.
+
+    Args:
+        safety_index: Composite safety score (0-100)
+
+    Returns:
+        Tuple of (score, confidence)
+    """
+    if safety_index is None or safety_index < 0:
+        logger.warning(f"Invalid safety index: {safety_index}")
+        return 50.0, 0.5
+
+    # Safety index is already 0-100, use directly
+    score = clip(safety_index, 0, 100)
+
+    # Confidence based on how extreme the score is
+    # Very high or very low scores are more certain
+    confidence = 0.85 if 30 <= safety_index <= 70 else 0.92
+
+    return score, confidence
+
+
+def calculate_visa_score(visa_score: float) -> Tuple[float, float]:
+    """
+    Calculate visa ease score.
+
+    Visa scoring:
+    - visa_free: 100
+    - visa_on_arrival: 80
+    - evisa: 60
+    - visa_required: 20
+
+    Args:
+        visa_score: Pre-calculated visa score (0-100)
+
+    Returns:
+        Tuple of (score, confidence)
+    """
+    if visa_score is None or visa_score < 0:
+        logger.warning(f"Invalid visa score: {visa_score}")
+        return 50.0, 0.5
+
+    score = clip(visa_score, 0, 100)
+
+    # High confidence for visa data (relatively static)
+    confidence = 0.95
+
+    return score, confidence
+
+
+def calculate_access_score(access_score: float) -> Tuple[float, float]:
+    """
+    Calculate travel accessibility score.
+
+    Access scoring considers:
+    - Direct flight availability
+    - Flight duration
+    - Flight frequency
+
+    Args:
+        access_score: Pre-calculated access score (0-100)
+
+    Returns:
+        Tuple of (score, confidence)
+    """
+    if access_score is None or access_score < 0:
+        logger.warning(f"Invalid access score: {access_score}")
+        return 50.0, 0.5
+
+    score = clip(access_score, 0, 100)
+
+    # Moderate confidence (flight schedules can change)
+    confidence = 0.85
+
+    return score, confidence
+
+
 def calculate_destination_score(
     current_exchange_rate: float,
     baseline_exchange_rate: float,
@@ -224,7 +326,11 @@ def calculate_destination_score(
     baseline_col: float,
     currency: str = "USD",
     country: str = "",
-    data_quality: Optional[DestinationDataQuality] = None
+    data_quality: Optional[DestinationDataQuality] = None,
+    safety_index: Optional[float] = None,
+    visa_score: Optional[float] = None,
+    access_score: Optional[float] = None,
+    use_expanded_scoring: bool = True
 ) -> Dict[str, Any]:
     """
     Calculate the overall destination score with component breakdowns.
@@ -239,11 +345,15 @@ def calculate_destination_score(
         currency: Currency code for exchange rate validation
         country: Country name for validation
         data_quality: Optional data quality metadata
+        safety_index: Optional safety index score (0-100)
+        visa_score: Optional visa ease score (0-100)
+        access_score: Optional travel accessibility score (0-100)
+        use_expanded_scoring: If True, use 6-indicator scoring; if False, use legacy 3-indicator
 
     Returns:
         Dictionary with scores and changes for all components
     """
-    # Calculate component scores with validation
+    # Calculate core component scores with validation
     exchange_score, exchange_change, exchange_conf = calculate_exchange_score(
         current_exchange_rate, baseline_exchange_rate, currency
     )
@@ -254,12 +364,59 @@ def calculate_destination_score(
         current_col, baseline_col, country=country
     )
 
-    # Calculate final weighted score
-    raw_score = (
-        exchange_score * EXCHANGE_WEIGHT +
-        flight_score * FLIGHT_WEIGHT +
-        col_score * COL_WEIGHT
+    # Calculate new indicator scores if available and expanded scoring is enabled
+    has_expanded_data = (
+        use_expanded_scoring and
+        safety_index is not None and
+        visa_score is not None and
+        access_score is not None
     )
+
+    if has_expanded_data:
+        # Calculate new indicator scores
+        safety_score_val, safety_conf = calculate_safety_score(safety_index)
+        visa_score_val, visa_conf = calculate_visa_score(visa_score)
+        access_score_val, access_conf = calculate_access_score(access_score)
+
+        # Calculate final weighted score with all 6 indicators
+        raw_score = (
+            exchange_score * EXCHANGE_WEIGHT +
+            flight_score * FLIGHT_WEIGHT +
+            col_score * COL_WEIGHT +
+            safety_score_val * SAFETY_WEIGHT +
+            visa_score_val * VISA_WEIGHT +
+            access_score_val * ACCESS_WEIGHT
+        )
+
+        # Calculate confidence from all component confidences
+        overall_confidence = (
+            exchange_conf * EXCHANGE_WEIGHT +
+            flight_conf * FLIGHT_WEIGHT +
+            col_conf * COL_WEIGHT +
+            safety_conf * SAFETY_WEIGHT +
+            visa_conf * VISA_WEIGHT +
+            access_conf * ACCESS_WEIGHT
+        )
+    else:
+        # Use legacy 3-indicator scoring
+        raw_score = (
+            exchange_score * LEGACY_EXCHANGE_WEIGHT +
+            flight_score * LEGACY_FLIGHT_WEIGHT +
+            col_score * LEGACY_COL_WEIGHT
+        )
+
+        overall_confidence = (
+            exchange_conf * LEGACY_EXCHANGE_WEIGHT +
+            flight_conf * LEGACY_FLIGHT_WEIGHT +
+            col_conf * LEGACY_COL_WEIGHT
+        )
+
+        safety_score_val = None
+        safety_conf = None
+        visa_score_val = None
+        visa_conf = None
+        access_score_val = None
+        access_conf = None
 
     # Apply data quality multiplier if available
     if data_quality:
@@ -269,31 +426,27 @@ def calculate_destination_score(
         final_score = raw_score * quality_multiplier
         overall_confidence = data_quality.overall_quality_score / 100
     else:
-        # Calculate confidence from component confidences
-        overall_confidence = (
-            exchange_conf * EXCHANGE_WEIGHT +
-            flight_conf * FLIGHT_WEIGHT +
-            col_conf * COL_WEIGHT
-        )
         quality_multiplier = calculate_confidence_multiplier(overall_confidence * 100)
         final_score = raw_score * quality_multiplier
 
-    # Calculate overall change (average of component changes)
+    # Calculate overall change (average of momentum-based component changes)
     overall_change = (exchange_change + flight_change + col_change) / 3
 
-    return {
+    # Build result dictionary
+    result = {
         "final_score": round(final_score, 1),
         "raw_score": round(raw_score, 1),
         "overall_change": round(overall_change, 1),
         "quality_multiplier": round(quality_multiplier, 3),
         "confidence": round(overall_confidence, 2),
+        "scoring_version": "expanded" if has_expanded_data else "legacy",
         "components": {
             "exchange": {
                 "score": round(exchange_score, 1),
                 "change": round(exchange_change, 1),
                 "current": current_exchange_rate,
                 "baseline": baseline_exchange_rate,
-                "weight": EXCHANGE_WEIGHT,
+                "weight": EXCHANGE_WEIGHT if has_expanded_data else LEGACY_EXCHANGE_WEIGHT,
                 "confidence": round(exchange_conf, 2)
             },
             "flight": {
@@ -301,7 +454,7 @@ def calculate_destination_score(
                 "change": round(flight_change, 1),
                 "current": current_flight_cost,
                 "baseline": baseline_flight_cost,
-                "weight": FLIGHT_WEIGHT,
+                "weight": FLIGHT_WEIGHT if has_expanded_data else LEGACY_FLIGHT_WEIGHT,
                 "confidence": round(flight_conf, 2)
             },
             "col": {
@@ -309,14 +462,40 @@ def calculate_destination_score(
                 "change": round(col_change, 1),
                 "current": current_col,
                 "baseline": baseline_col,
-                "weight": COL_WEIGHT,
+                "weight": COL_WEIGHT if has_expanded_data else LEGACY_COL_WEIGHT,
                 "confidence": round(col_conf, 2)
             }
         }
     }
 
+    # Add expanded indicator components if available
+    if has_expanded_data:
+        result["components"]["safety"] = {
+            "score": round(safety_score_val, 1),
+            "value": safety_index,
+            "weight": SAFETY_WEIGHT,
+            "confidence": round(safety_conf, 2)
+        }
+        result["components"]["visa"] = {
+            "score": round(visa_score_val, 1),
+            "value": visa_score,
+            "weight": VISA_WEIGHT,
+            "confidence": round(visa_conf, 2)
+        }
+        result["components"]["access"] = {
+            "score": round(access_score_val, 1),
+            "value": access_score,
+            "weight": ACCESS_WEIGHT,
+            "confidence": round(access_conf, 2)
+        }
 
-def assign_badges(score_data: Dict[str, Any]) -> List[str]:
+    return result
+
+
+def assign_badges(
+    score_data: Dict[str, Any],
+    has_nomad_visa: bool = False
+) -> List[str]:
     """
     Assign badges based on score thresholds.
 
@@ -326,6 +505,14 @@ def assign_badges(score_data: Dict[str, Any]) -> List[str]:
     - CURRENCY WIN: rate_change > 20%
     - FLIGHT DEAL: flight_change > 25%
     - DEFLATION: col_change > 15%
+    - SAFE HAVEN: safety_score >= 85
+    - EASY ENTRY: visa_score == 100 (visa-free)
+    - NOMAD VISA: country has digital nomad visa program
+    - WELL CONNECTED: access_score >= 80
+
+    Args:
+        score_data: Dictionary with score components
+        has_nomad_visa: Whether country has digital nomad visa program
 
     Returns:
         List of badge strings (clean text, no emoji)
@@ -340,6 +527,7 @@ def assign_badges(score_data: Dict[str, Any]) -> List[str]:
     flight_change = components.get("flight", {}).get("change", 0)
     col_change = components.get("col", {}).get("change", 0)
 
+    # Core badges
     if final_score >= BADGE_EXCELLENT_THRESHOLD:
         badges.append("EXCELLENT")
 
@@ -354,6 +542,29 @@ def assign_badges(score_data: Dict[str, Any]) -> List[str]:
 
     if col_change > BADGE_DEFLATION_THRESHOLD:
         badges.append("DEFLATION")
+
+    # New indicator badges (only if expanded scoring data is present)
+    safety_data = components.get("safety", {})
+    visa_data = components.get("visa", {})
+    access_data = components.get("access", {})
+
+    if safety_data:
+        safety_score = safety_data.get("value", 0)
+        if safety_score and safety_score >= BADGE_SAFE_HAVEN_THRESHOLD:
+            badges.append("SAFE HAVEN")
+
+    if visa_data:
+        visa_score = visa_data.get("value", 0)
+        if visa_score and visa_score >= BADGE_EASY_ENTRY_THRESHOLD:
+            badges.append("EASY ENTRY")
+
+    if has_nomad_visa:
+        badges.append("NOMAD VISA")
+
+    if access_data:
+        access_score = access_data.get("value", 0)
+        if access_score and access_score >= BADGE_WELL_CONNECTED_THRESHOLD:
+            badges.append("WELL CONNECTED")
 
     return badges
 

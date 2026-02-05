@@ -191,7 +191,8 @@ class DestinationDataQuality:
     """
     Quality tracking for all data components of a destination.
 
-    Combines quality scores from exchange rate, flight cost, and CoL data.
+    Combines quality scores from exchange rate, flight cost, CoL data,
+    and the new indicators: safety, visa, and travel accessibility.
     """
 
     country_key: str
@@ -199,6 +200,9 @@ class DestinationDataQuality:
     exchange_data: Optional[DataWithProvenance] = None
     flight_data: Optional[DataWithProvenance] = None
     col_data: Optional[DataWithProvenance] = None
+    safety_data: Optional[DataWithProvenance] = None
+    visa_data: Optional[DataWithProvenance] = None
+    access_data: Optional[DataWithProvenance] = None
     overall_quality_score: float = 0.0
     calculated_at: datetime = field(default_factory=datetime.now)
 
@@ -207,24 +211,59 @@ class DestinationDataQuality:
         self._calculate_overall_quality()
 
     def _calculate_overall_quality(self) -> None:
-        """Calculate weighted overall quality score."""
+        """Calculate weighted overall quality score.
+
+        Weights match the scoring weights when all indicators are present:
+        - Exchange: 20%
+        - Flight: 15%
+        - CoL: 35%
+        - Safety: 15%
+        - Visa: 10%
+        - Access: 5%
+
+        Falls back to legacy weights (30/20/50) if new indicators not present.
+        """
         scores = []
         weights = []
 
-        # Exchange rate: 30% weight
-        if self.exchange_data:
-            scores.append(self.exchange_data.quality_score)
-            weights.append(0.30)
+        # Check if we have expanded indicator data
+        has_expanded = (
+            self.safety_data is not None or
+            self.visa_data is not None or
+            self.access_data is not None
+        )
 
-        # Flight cost: 20% weight
-        if self.flight_data:
-            scores.append(self.flight_data.quality_score)
-            weights.append(0.20)
-
-        # Cost of living: 50% weight
-        if self.col_data:
-            scores.append(self.col_data.quality_score)
-            weights.append(0.50)
+        if has_expanded:
+            # Use new weights
+            if self.exchange_data:
+                scores.append(self.exchange_data.quality_score)
+                weights.append(0.20)
+            if self.flight_data:
+                scores.append(self.flight_data.quality_score)
+                weights.append(0.15)
+            if self.col_data:
+                scores.append(self.col_data.quality_score)
+                weights.append(0.35)
+            if self.safety_data:
+                scores.append(self.safety_data.quality_score)
+                weights.append(0.15)
+            if self.visa_data:
+                scores.append(self.visa_data.quality_score)
+                weights.append(0.10)
+            if self.access_data:
+                scores.append(self.access_data.quality_score)
+                weights.append(0.05)
+        else:
+            # Legacy weights
+            if self.exchange_data:
+                scores.append(self.exchange_data.quality_score)
+                weights.append(0.30)
+            if self.flight_data:
+                scores.append(self.flight_data.quality_score)
+                weights.append(0.20)
+            if self.col_data:
+                scores.append(self.col_data.quality_score)
+                weights.append(0.50)
 
         if scores and weights:
             # Normalize weights
@@ -258,6 +297,12 @@ class DestinationDataQuality:
             sources.append(self.flight_data.source)
         if self.col_data:
             sources.append(self.col_data.source)
+        if self.safety_data:
+            sources.append(self.safety_data.source)
+        if self.visa_data:
+            sources.append(self.visa_data.source)
+        if self.access_data:
+            sources.append(self.access_data.source)
 
         if not sources:
             return DataSource.MOCK
@@ -276,6 +321,15 @@ class DestinationDataQuality:
 
         return DataSource.MOCK
 
+    @property
+    def has_expanded_data(self) -> bool:
+        """Check if expanded indicator data is available."""
+        return (
+            self.safety_data is not None or
+            self.visa_data is not None or
+            self.access_data is not None
+        )
+
     def get_freshness_summary(self) -> Dict[str, str]:
         """Get freshness levels for all components."""
         summary = {}
@@ -285,10 +339,30 @@ class DestinationDataQuality:
             summary["flight"] = self.flight_data.freshness_level
         if self.col_data:
             summary["col"] = self.col_data.freshness_level
+        if self.safety_data:
+            summary["safety"] = self.safety_data.freshness_level
+        if self.visa_data:
+            summary["visa"] = self.visa_data.freshness_level
+        if self.access_data:
+            summary["access"] = self.access_data.freshness_level
         return summary
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
+        components = {
+            "exchange": self.exchange_data.to_dict() if self.exchange_data else None,
+            "flight": self.flight_data.to_dict() if self.flight_data else None,
+            "col": self.col_data.to_dict() if self.col_data else None,
+        }
+
+        # Add expanded components if present
+        if self.safety_data:
+            components["safety"] = self.safety_data.to_dict()
+        if self.visa_data:
+            components["visa"] = self.visa_data.to_dict()
+        if self.access_data:
+            components["access"] = self.access_data.to_dict()
+
         return {
             "country_key": self.country_key,
             "country_name": self.country_name,
@@ -296,11 +370,8 @@ class DestinationDataQuality:
             "quality_level": self.quality_level,
             "primary_source": self.primary_source.value,
             "calculated_at": self.calculated_at.isoformat(),
-            "components": {
-                "exchange": self.exchange_data.to_dict() if self.exchange_data else None,
-                "flight": self.flight_data.to_dict() if self.flight_data else None,
-                "col": self.col_data.to_dict() if self.col_data else None,
-            },
+            "has_expanded_data": self.has_expanded_data,
+            "components": components,
             "freshness": self.get_freshness_summary(),
         }
 
@@ -415,17 +486,30 @@ class ProvenanceMetadata:
     exchange_source: Optional[str] = None
     flight_source: Optional[str] = None
     col_source: Optional[str] = None
+    safety_source: Optional[str] = None
+    visa_source: Optional[str] = None
+    access_source: Optional[str] = None
     fetched_at: datetime = field(default_factory=datetime.now)
 
     def to_db_columns(self) -> Dict[str, Any]:
         """Convert to dictionary for database insertion."""
-        return {
+        result = {
             "data_source": self.data_source.value,
             "data_quality_score": round(self.data_quality_score, 1),
             "exchange_source": self.exchange_source or self.data_source.value,
             "flight_source": self.flight_source or self.data_source.value,
             "col_source": self.col_source or self.data_source.value,
         }
+
+        # Add expanded sources if present
+        if self.safety_source:
+            result["safety_source"] = self.safety_source
+        if self.visa_source:
+            result["visa_source"] = self.visa_source
+        if self.access_source:
+            result["access_source"] = self.access_source
+
+        return result
 
     @classmethod
     def from_destination_quality(
@@ -447,6 +531,18 @@ class ProvenanceMetadata:
             col_source=(
                 quality.col_data.source.value
                 if quality.col_data else None
+            ),
+            safety_source=(
+                quality.safety_data.source.value
+                if quality.safety_data else None
+            ),
+            visa_source=(
+                quality.visa_data.source.value
+                if quality.visa_data else None
+            ),
+            access_source=(
+                quality.access_data.source.value
+                if quality.access_data else None
             ),
         )
 
